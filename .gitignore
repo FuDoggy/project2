@@ -1,3 +1,10 @@
+**/.DS_Store
+.vscode
+.DS_Store
+node_modules/
+Develop/**
+develop/**
+
 # Logs
 logs
 *.log
