@@ -1,0 +1,7 @@
+Version: 1.1.0
+  - Updated the PHP Email Form library to version 2.0 with reCaptcha support
+  - Added smooth scroll on page load with hash links in the url
+  - Other small fixes and improvements
+  
+Version: 1.0.0
+  - Initial Release
