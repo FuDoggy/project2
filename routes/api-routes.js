@@ -63,9 +63,37 @@ module.exports = function(app) {
     // }
     res.json(allDrinks)
   })
+
+  //seeder route to migrate data from array data to SQL data
+  app.get("/api/seeder", async (req, res) => {
+    const data = allDrinks.map(function(a) {
+      let element = a.drinks[0]
+      let i = 1;
+      let recipe = ""
+      while(element[`strIngredient${i}`]){
+        recipe += (element[`strMeasure${i}`] || "") + element[`strIngredient${i}`]+" "
+        i++;
+      }
+      return {
+        name: element.strDrink,
+        category: element.strCategory,
+        alcoholic: element.strAlcoholic === "Alcoholic" ? true : false,
+        instructions: element.strInstructions,
+        glass: element.strGlass,
+        thumbnail: element.strDrinkThumb,
+        recipe,
+      }
+    });
+    
+    for(let i = 0; i< data.length; i++){
+      await db.Drink.create(data[i])
+      console.log(`index ${i} completed!`)
+    }
+    res.json("seeded!")
+  })
   
   app.post("api/drinks", (req, res) => {
-    db.Drinks.create(req.body).then((result) => {
+    db.Drink.create(req.body).then((result) => {
       res.status(200).end();
     })
   })
