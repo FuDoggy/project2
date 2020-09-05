@@ -32,7 +32,7 @@ async function getIngredients() {
         console.log(ingredientArray);
         
         // write to a json file. Also title-case the ingredients and write to a file.
-        fs.writeFile("lowercased-ingredients", JSON.stringify(ingredientArray, null, 2), (err) => {if (err) throw err})
+        fs.writeFile("lowercased-ingredients.json", JSON.stringify(ingredientArray, null, 2), (err) => {if (err) throw err})
     }
     catch (err) {
         throw err;
