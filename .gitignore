@@ -5,7 +5,7 @@ node_modules/
 Develop/**
 develop/**
 .env
-
+project2.code-workspace
 
 # Logs
 logs
