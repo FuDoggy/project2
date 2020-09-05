@@ -19,9 +19,11 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  // create a junction table for a many-to-many relationship
   User.associate = function(models) {
-    User.hasMany(models.Ingredients, {
-      onDelete: "cascade"
+    User.belongsToMany(models.Ingredient, {
+      onDelete: "NO ACTION",
+      through: "UserIngredients"
     });
   };
 
