@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const allDrinks = require("../dev-shared-files/all-drinks.json");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -56,10 +57,11 @@ module.exports = function(app) {
     // if (!req.user) {
     //   res.json({});
     // } else {
-      db.Drinks.findAll({}).then((result) => {
-        res.json(result);
-      })
+      // db.Drinks.findAll({}).then((result) => {
+      //   res.json(result);
+      // })
     // }
+    res.json(allDrinks)
   })
   
   app.post("api/drinks", (req, res) => {
