@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const allDrinks = require("../dev-shared-files/all-drinks.json");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -51,4 +52,8 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/drinks", (req,res)=> {
+    res.json(allDrinks)
+  })
 };
