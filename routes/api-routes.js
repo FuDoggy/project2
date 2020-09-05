@@ -14,7 +14,7 @@ module.exports = function(app) {
       id: req.user.id
     });
   });
-//
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -53,12 +53,19 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/drinks", (req,res)=> {
+  app.get("/api/drinks", (req, res) => {
+    // if (!req.user) {
+    //   res.json({});
+    // } else {
+      // db.Drinks.findAll({}).then((result) => {
+      //   res.json(result);
+      // })
+    // }
     res.json(allDrinks)
   })
 
   //seeder route to migrate data from array data to SQL data
-  app.get("/api/seeder", async (req, res) =>{
+  app.get("/api/seeder", async (req, res) => {
     const data = allDrinks.map(function(a) {
       let element = a.drinks[0]
       let i = 1;
@@ -79,9 +86,15 @@ module.exports = function(app) {
     });
     
     for(let i = 0; i< data.length; i++){
-      await db.drinks.create(data[i])
+      await db.Drink.create(data[i])
       console.log(`index ${i} completed!`)
     }
     res.json("seeded!")
+  })
+  
+  app.post("api/drinks", (req, res) => {
+    db.Drink.create(req.body).then((result) => {
+      res.status(200).end();
+    })
   })
 };

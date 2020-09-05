@@ -18,6 +18,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+
+  // create a junction table for a many-to-many relationship
+  User.associate = function(models) {
+    User.belongsToMany(models.Ingredient, {
+      onDelete: "NO ACTION",
+      through: "UserIngredients"
+    });
+  };
+
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);

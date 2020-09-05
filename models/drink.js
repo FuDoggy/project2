@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-  var Drinks = sequelize.define("drinks", {
+  var Drink = sequelize.define("Drink", {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     recipe: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(9999),
       allowNull: false
     },
     thumbnail: {
@@ -24,7 +24,19 @@ module.exports = function(sequelize, DataTypes) {
     glass: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    video_url: {
+      type: DataTypes.STRING,
     }
   });
-  return Drinks;
+
+  // create a junction table for a many-to-many relationship
+  Drink.associate = function(models) {
+    Drink.belongsToMany(models.Ingredient, {
+      onDelete: "NO ACTION",
+      through: "DrinkIngredients"
+    });
+  }
+
+  return Drink;
 }
