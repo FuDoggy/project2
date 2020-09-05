@@ -5,10 +5,8 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 
 const FILENAME = "../all-drinks.json"
-const STRING_TO_FIND = "strVideo";
 
-
-
+/** gets all ingredients from the file and stores as json */
 async function getIngredients() {
     try {
         // store all ingredients in an array
