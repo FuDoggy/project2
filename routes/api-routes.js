@@ -2,6 +2,8 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const allDrinks = require("../dev-shared-files/all-drinks.json");
+const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
+const util = require("util");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -66,7 +68,26 @@ module.exports = function(app) {
 
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
-    const data = allDrinks.map(function(a) {
+    let alreadyEntered = [];
+    await seed(allDrinks, alreadyEntered);
+    await seed(alcoholicDrinks, alreadyEntered);
+    res.json("seeded!")
+  })
+  
+  app.post("api/drinks", (req, res) => {
+    db.Drink.create(req.body).then((result) => {
+      res.status(200).end();
+    })
+  })
+};
+
+
+/** seeds the drinks table with drink data from a json file.
+ * json file must the listed keys for each object. */
+
+async function seed(jsonFileName, alreadyEntered) {
+  try {
+    const data = jsonFileName.map(function(a) {
       let element = a.drinks[0]
       let i = 1;
       let recipe = ""
@@ -77,24 +98,32 @@ module.exports = function(app) {
       return {
         name: element.strDrink,
         category: element.strCategory,
-        alcoholic: element.strAlcoholic === "Alcoholic" ? true : false,
+        alcoholic: (element.strAlcoholic).toLowerCase() === "alcoholic" ? true : false,
         instructions: element.strInstructions,
         glass: element.strGlass,
         thumbnail: element.strDrinkThumb,
         recipe,
       }
     });
-    
+
+
     for(let i = 0; i< data.length; i++){
-      await db.Drink.create(data[i])
-      console.log(`index ${i} completed!`)
+      // add to database, but don't add duplicates
+      // console.log(data[i])
+      // console.log(data[i]["name"])
+      if (!alreadyEntered.includes(data[i]["name"])) {
+        await db.Drink.create(data[i])
+        console.log(`index ${i} completed!`)
+        alreadyEntered.push(data[i]["name"]);
+        // console.log(alreadyEntered)
+      }
+      else {
+        console.log(`$Index ${i} ${data[i]["name"]} is already in the database!`)
+      }
     }
-    res.json("seeded!")
-  })
-  
-  app.post("api/drinks", (req, res) => {
-    db.Drink.create(req.body).then((result) => {
-      res.status(200).end();
-    })
-  })
-};
+  }
+  catch (err) {
+    throw err;
+  }
+
+}
