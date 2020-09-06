@@ -431,7 +431,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("https://images.unsplash.com/photo-1531973819741-e27a5ae2cc7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") top center;
   background-size: cover;
   position: relative;
   padding: 0;
@@ -731,7 +731,7 @@ section {
 # About
 --------------------------------------------------------------*/
 .about {
-  background: url("../img/about-bg.jpg") center center;
+  background: url("https://images.unsplash.com/photo-1515568514401-f2692d6781f2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb") center center;
   background-size: cover;
   position: relative;
   padding: 80px 0;
@@ -1033,7 +1033,7 @@ section {
 # Events
 --------------------------------------------------------------*/
 .events {
-  background: url(../img/events-bg.jpg) center center no-repeat;
+  background: url("https://www.wraltechwire.com/wp-content/uploads/2019/09/cincoro-brands-1008x1024.jpg") center center no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -1746,4 +1746,29 @@ section {
   text-align: center;
   font-size: 13px;
   color: #fff;
+}
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.desc {
+  padding: 15px;
+  text-align: center;
 }
