@@ -4,6 +4,7 @@ const passport = require("../config/passport");
 const allDrinks = require("../dev-shared-files/all-drinks.json");
 const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
 const util = require("util");
+const path = require("path");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -34,10 +35,11 @@ module.exports = function(app) {
       });
   });
 
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
+    req.logout()
+    res.status(200).end()
   });
 
   // Route for getting some data about our user to be used client side
@@ -83,8 +85,7 @@ module.exports = function(app) {
 
 
 /** seeds the drinks table with drink data from a json file.
- * json file must the listed keys for each object. */
-
+ * json file must contain the listed keys for each object. */
 async function seed(jsonFileName, alreadyEntered) {
   try {
     const data = jsonFileName.map(function(a) {

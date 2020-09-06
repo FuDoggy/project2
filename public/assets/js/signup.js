@@ -28,15 +28,22 @@ $(document).ready(() => {
       email: email,
       password: password
     })
-      .then(() => {
-        window.location.replace("/members");
-        // If there's an error, handle it by throwing up a bootstrap alert
-      })
-      .catch(handleLoginErr);
+    .then(() => {
+      window.location.replace("/members");
+      // If there's an error, handle it by throwing up a bootstrap alert
+    })
+    .catch(handleLoginErr);
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    if (err.responseJSON.errors[0].message === "Validation isEmail on email failed") {
+      var errorMessage = "A valid email address must be entered!"
+      $("#alert .msg").text(errorMessage);
+    } 
+    else {
+      $("#alert .msg").text(err.responseJSON.errors[0].message);
+    }
+
     $("#alert").fadeIn(500);
   }
 });
