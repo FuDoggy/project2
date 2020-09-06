@@ -1033,7 +1033,7 @@ section {
 # Events
 --------------------------------------------------------------*/
 .events {
-  background: url(../img/events-bg.jpg) center center no-repeat;
+  background: url("https://www.wraltechwire.com/wp-content/uploads/2019/09/cincoro-brands-1008x1024.jpg") center center no-repeat;
   background-size: cover;
   position: relative;
 }
