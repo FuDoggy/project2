@@ -82,9 +82,9 @@ module.exports = function(app) {
 };
 
 
-/** seeds the drinks table with drink data from a json file.
- * json file must the listed keys for each object. */
 
+/** seeds the drinks table with drink data from a json file.
+ * json file must contain the listed keys for each object. */
 async function seed(jsonFileName, alreadyEntered) {
   try {
     const data = jsonFileName.map(function(a) {
