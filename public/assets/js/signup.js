@@ -39,7 +39,10 @@ $(document).ready(() => {
     if (err.responseJSON.errors[0].message === "Validation isEmail on email failed") {
       var errorMessage = "A valid email address must be entered!"
       $("#alert .msg").text(errorMessage);
-    } 
+    }
+    else if (err.responseJSON.errors[0].message === "users.email must be unique") {
+      $("#alert .msg").text("That email is already in use!");
+    }
     else {
       $("#alert .msg").text(err.responseJSON.errors[0].message);
     }

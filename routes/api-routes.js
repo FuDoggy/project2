@@ -5,6 +5,8 @@ const allDrinks = require("../dev-shared-files/all-drinks.json");
 const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
 const util = require("util");
 const path = require("path");
+var owasp = require('owasp-password-strength-test');
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -22,6 +24,10 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
+    // Testing password strength:
+    var result = owasp.test(req.body.password)
+    console.log(result)
+  
     db.User.create({
       email: req.body.email,
       password: req.body.password
