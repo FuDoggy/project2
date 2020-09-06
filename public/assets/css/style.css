@@ -731,7 +731,7 @@ section {
 # About
 --------------------------------------------------------------*/
 .about {
-  background: url("../img/about-bg.jpg") center center;
+  background: url("https://images.unsplash.com/photo-1515568514401-f2692d6781f2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb") center center;
   background-size: cover;
   position: relative;
   padding: 80px 0;
