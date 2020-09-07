@@ -30,6 +30,12 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  Drink.associate = function(models) {
+    Drink.hasOne(models.User, {
+      onDelete: "NO ACTION"
+    });
+  }
+  //ingredients table not currently used
   // create a junction table for a many-to-many relationship
   Drink.associate = function(models) {
     Drink.belongsToMany(models.Ingredient, {

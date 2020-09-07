@@ -19,48 +19,50 @@
 
 </head>
 
-<body>
+<body style="background-color: darkgrey">
 
   <!-- need form to get fields to fill out columns from drinks table -->
-  <form id="recipe-form">
-    <div class="form-group">
-      <label for="drink-name">Name</label>
-      <input type="text" class="form-control recipe-inputs" id="drink-name">
-    </div>
+  <section class='container'>
+    <form id="recipe-form">
+      <div class="form-group">
+        <label for="drink-name">Name</label>
+        <input type="text" class="form-control recipe-inputs" id="drink-name">
+      </div>
 
-    <div class="form-group form-check">
-      <input type="checkbox" class="recipe-inputs form-check-input" id="alcoholic">
-      <label class="form-check-label" for="alcoholic">Alcoholic?</label>
-    </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="recipe-inputs form-check-input" id="alcoholic">
+        <label class="form-check-label" for="alcoholic">Alcoholic?</label>
+      </div>
 
-    <div class="form-group">
-      <label for="drink-recipe">Recipe</label>
-      <input type="text" class="recipe-inputs form-control" id="drink-recipe">
-    </div>
+      <div class="form-group">
+        <label for="drink-recipe">Recipe</label>
+        <input type="text" class="recipe-inputs form-control" id="drink-recipe">
+      </div>
 
-    <div class="form-group">
-      <label for="drink-picture-url">Picture url</label>
-      <input type="text" class="recipe-inputs form-control" id="drink-picture-url">
-    </div>
+      <div class="form-group">
+        <label for="drink-picture-url">Picture url</label>
+        <!-- picture upload? SQL can store images -->
+        <input type="text" class="recipe-inputs form-control" id="drink-picture-url">
+      </div>
 
-    <div class="form-group">
-      <label for="drink-name">Name</label>
-      <input type="text" class="recipe-inputs form-control" id="drink-name">
-    </div>
+      <div class="form-group">
+        <label for="drink-glass">Glass</label>
+        <input type="text" class="recipe-inputs form-control" id="drink-glass">
+      </div>
 
-    <div class="form-group">
-      <label for="drink-instructions">Instructions</label>
-      <input type="text" class="recipe-inputs form-control" id="drink-instructions">
-    </div>
+      <div class="form-group">
+        <label for="drink-instructions">Instructions</label>
+        <input type="text" class="recipe-inputs form-control" id="drink-instructions">
+      </div>
 
-    <div class="form-group">
-      <label for="drink-name">Name</label>
-      <input type="text" class="recipe-inputs form-control" id="drink-name">
-    </div>
+      <div class="form-group">
+        <label for="drink-video-url">Video url</label>
+        <input type="text" class="recipe-inputs form-control" id="drink-video-url">
+      </div>
 
-    <button type="submit" id="submit-recipe" class="btn btn-primary">Submit</button>
-  </form>
-
+      <button type="submit" id="submit-recipe" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
 </body>
 
 </html>

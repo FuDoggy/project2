@@ -8,7 +8,9 @@ module.exports = function(req, res, next) {
   // If the user is logged in, continue with the request to the restricted route
 
 //==========REMOVE FOR DEPLOYMENT======================
-if (process.env.BYPASS_AUTHENTICATION === 'true') { return next() }
+if (process.env.BYPASS_AUTHENTICATION === 'yes') {
+   return next();
+}
 //==========REMOVE FOR DEPLOYMENT======================
 
 

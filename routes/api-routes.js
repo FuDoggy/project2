@@ -37,7 +37,7 @@ module.exports = function(app) {
     // IMPORTANT: THESE LINES MUST BE COMMENTED OUT BEFORE DEPLOYMENT
     // =============================================
     console.log(process.env.STRONG_PASSWORD)
-    if (process.env.STRONG_PASSWORD === "true") {
+    if (process.env.STRONG_PASSWORD === "yes") {
       result.strong = true
     }
     // =============================================

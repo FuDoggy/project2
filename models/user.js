@@ -19,7 +19,15 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  // each user can be associated with drink recipes
+  User.associate = function(models) {
+    User.belongsToMany(models.Drink, {
+      onDelete: "CASCADE",
+    });
+  };
+
   // create a junction table for a many-to-many relationship
+  // ingredients table not currently used
   User.associate = function(models) {
     User.belongsToMany(models.Ingredient, {
       onDelete: "NO ACTION",
