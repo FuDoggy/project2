@@ -23,7 +23,6 @@ $(document).ready(() => {
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(email, password) {
-    console.log("hi")
     $.post("/api/signup", {
       email: email,
       password: password
@@ -33,12 +32,17 @@ $(document).ready(() => {
 
       // if password strength is insufficient, print errors on page
       if (!result.strong) {
-        console.log(result["errors"])
+        $("#alert .msg").text("");
+        for (let pwRequirement of result["errors"]) {
+          $("#alert .msg").append("<p>" + pwRequirement + "</p>");
+        }
+        $("#alert").fadeIn(500);
       }
       // if password strength is sufficient, result.strong will return true
       else {
         emailInput.val("");
         passwordInput.val("");
+        // Store email in local storage upon login.
         localStorage.setItem("express-bartender-userEmail", result.email)
         localStorage.setItem("express-bartender-userId", result.id)
         window.location.replace("/members");

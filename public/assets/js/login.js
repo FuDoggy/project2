@@ -29,6 +29,7 @@ $(document).ready(() => {
       password: password
     })
       .then((user) => {
+        // Store email in local storage upon login.
         localStorage.setItem("express-bartender-userEmail", user.email)
         localStorage.setItem("express-bartender-userId", user.id)
         window.location.replace("/members");
