@@ -29,6 +29,8 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
+        localStorage.setItem("express-bartender-userEmail", result.email)
+        localStorage.setItem("express-bartender-userId", result.id)
         window.location.replace("/members");
         // If there's an error, log the error
       })

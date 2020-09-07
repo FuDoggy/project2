@@ -3,6 +3,7 @@ $(document).ready(() => {
   const signUpForm = $("form.signup");
   const emailInput = $("input#email-input");
   const passwordInput = $("input#password-input");
+  console.log("reloaded")
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", event => {
@@ -17,19 +18,31 @@ $(document).ready(() => {
     }
     // If we have an email and password, run the signUpUser function
     signUpUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(email, password) {
+    console.log("hi")
     $.post("/api/signup", {
       email: email,
       password: password
     })
-    .then(() => {
-      window.location.replace("/members");
+    .then((result) => {
+      console.log(result)
+
+      // if password strength is insufficient, print errors on page
+      if (!result.strong) {
+        console.log(result["errors"])
+      }
+      // if password strength is sufficient, result.strong will return true
+      else {
+        emailInput.val("");
+        passwordInput.val("");
+        localStorage.setItem("express-bartender-userEmail", result.email)
+        localStorage.setItem("express-bartender-userId", result.id)
+        window.location.replace("/members");
+      }
       // If there's an error, handle it by throwing up a bootstrap alert
     })
     .catch(handleLoginErr);

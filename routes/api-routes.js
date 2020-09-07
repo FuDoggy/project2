@@ -14,9 +14,11 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
+    console.log(req.user)
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
+      strong: true
     });
   });
 
@@ -25,20 +27,24 @@ module.exports = function(app) {
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
     // Testing password strength:
-    var result = owasp.test(req.body.password)
+    var result = owasp.test(req.body.password);
     console.log(result)
-  
-    db.User.create({
-      email: req.body.email,
-      password: req.body.password
-    })
-      .then(() => {
-        res.redirect(307, "/api/login");
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(401).json(err);
+
+    // if password strength is sufficient, create user:
+    if (result.strong) {
+      db.User.create({
+        email: req.body.email,
+        password: req.body.password
+      }).then(() => {
+          res.redirect(307, "/api/login");
+      }).catch(err => {
+          console.log(err)
+          res.status(401).json(err);
       });
+    }
+    else {
+      res.json(result);
+    }
   });
 
 
