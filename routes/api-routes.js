@@ -27,8 +27,13 @@ module.exports = function(app) {
   app.post("/api/signup", (req, res) => {
     // Testing password strength:
     var result = owasp.test(req.body.password);
-    console.log(result)
-
+    
+    // FOR DEV PURPOSES PASSWORD IS ALWAYS SET TO STRONG
+    // IMPORTANT: REMOVE THIS LINE BEFORE DEPLOYMENT
+    // =============================================
+    console.log(result);
+    result.strong = true;
+    // =============================================
     // if password strength is sufficient, create user:
     if (result.strong) {
       db.User.create({

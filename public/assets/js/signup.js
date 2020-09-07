@@ -28,7 +28,6 @@ $(document).ready(() => {
       password: password
     })
     .then((result) => {
-      console.log(result)
 
       // if password strength is insufficient, print errors on page
       if (!result.strong) {
