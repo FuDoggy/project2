@@ -6,8 +6,11 @@ const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
 const util = require("util");
 const path = require("path");
 var owasp = require('owasp-password-strength-test');
+
+//==========REMOVE FOR DEPLOYMENT======================
 // to bypass password strength tester, set STRONG_PASSWORD=true in .env file
 require("dotenv").config();
+//==========REMOVE FOR DEPLOYMENT======================
 
 
 module.exports = function(app) {
