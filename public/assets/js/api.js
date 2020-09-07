@@ -4,20 +4,21 @@ $(document).ready(function(){
     function getAllDrinks(){
         $.get("/api/drinks")
         .then((data)=> {
-            allDrinks = data;
+            allDrinks = data.sort(()=> Math.random()- 0.5);
+          console.log(data)
             appendDrinks()
         })
     }
 
     function appendDrinks(){
-        for(let i = 0; i< 10; i++){
-            $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].drinks[0].strAlcoholic}">
-            <img src="${allDrinks[i].drinks[0].strDrinkThumb}" class="menu-img" alt="">
+        for(let i = 0; i< allDrinks.length; i++){
+            $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].category}" id="${i}">
+            <img src="${allDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">${allDrinks[i].drinks[0].strDrink}</a><span></span>
+              <a href="#">${allDrinks[i].name} - ${allDrinks[i].category}</a><span></span>
             </div>
             <div class="menu-ingredients">
-              ${allDrinks[i].drinks[0].strIngredient1} ,${allDrinks[i].drinks[0].strIngredient2}, ${allDrinks[i].drinks[0].strIngredient3 || ""}
+              ${allDrinks[i].recipe}
             </div>
           </div>`)
         }

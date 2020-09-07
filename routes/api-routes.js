@@ -44,28 +44,19 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
+      res.json(req.user);
   });
 
   app.get("/api/drinks", (req, res) => {
-    // if (!req.user) {
-    //   res.json({});
-    // } else {
-      // db.Drinks.findAll({}).then((result) => {
-      //   res.json(result);
-      // })
-    // }
-    res.json(allDrinks)
+    if (!req.user) {
+      res.json({});
+    } else {
+      db.Drink.findAll().then((result) => {
+        res.json(result);
+      })
+    }
   })
 
   //seeder route to migrate data from array data to SQL data
@@ -98,11 +89,12 @@ async function seed(jsonFileName, alreadyEntered) {
       }
       return {
         name: element.strDrink,
-        category: element.strCategory,
+        category: element.strCategory.replace(/ /g,""),
         alcoholic: (element.strAlcoholic).toLowerCase() === "alcoholic" ? true : false,
         instructions: element.strInstructions,
         glass: element.strGlass,
         thumbnail: element.strDrinkThumb,
+        video_url: element.strVideo || "",
         recipe,
       }
     });

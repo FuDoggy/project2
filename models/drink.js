@@ -27,7 +27,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     video_url: {
       type: DataTypes.STRING,
-    }
+    },
+    category: DataTypes.STRING
   });
 
   // create a junction table for a many-to-many relationship
