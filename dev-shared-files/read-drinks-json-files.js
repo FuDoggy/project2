@@ -7,8 +7,8 @@ const readFileAsync = util.promisify(fs.readFile);
 // 2. Change STRING_TO_FIND to the property you'd like to find.
 // For example, "strDrink" will list all drink names in alcoholic-drinks.json
 // 3. Run the script with node.
-const FILENAME = "./all-drinks.json"
-const STRING_TO_FIND = "strDrink";
+const FILENAME = "./dev-shared-files/alcoholic-drinks.json"
+const STRING_TO_FIND = "strIngredient1";
 
 
 
