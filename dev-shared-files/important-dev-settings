@@ -3,10 +3,10 @@ tables are reinitialized upon server startup and database sync, in server.js
 db.sequelize.sync({force:true}) => set to false for deployment
 
 password strength is always strong, in api-routes.js under api/signup
-=> add 'STRONG_PASSWORD=true'  to .env
+=> add 'STRONG_PASSWORD=yes'  to .env
 => comment out or remove for deployment
 
-bypass login page, using 'BYPASS_AUTHENTICATION=true' in .env
+bypass login page, using 'BYPASS_AUTHENTICATION=yes' in .env
 => This will cause local storage to break, since it stores the email on login
 => remove lines from isAuthenticated.js before deployment
 
