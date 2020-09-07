@@ -36,8 +36,10 @@ module.exports = function(app) {
     // FOR DEV PURPOSES PASSWORD CAN BE SET TO ALWAYS BE STRONG
     // IMPORTANT: THESE LINES MUST BE COMMENTED OUT BEFORE DEPLOYMENT
     // =============================================
-    console.log(result);
-    process.env.STRONG_PASSWORD ? result.strong = process.env.STRONG_PASSWORD : null;
+    console.log(process.env.STRONG_PASSWORD)
+    if (process.env.STRONG_PASSWORD === "true") {
+      result.strong = true
+    }
     // =============================================
 
 

@@ -9,6 +9,7 @@ $("#recipe-form").on("submit", function(event) {
         console.log($(".recipe-inputs").eq(i).val())
     }
 
+    localStorage.getItem("")
     // next we have to validate the data - make sure fields are not null, etc.
     // pictures? videos?
 
