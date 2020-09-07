@@ -12,11 +12,9 @@ $("#recipe-form").on("submit", function(event) {
         // slice off the "drink-" portion of the id
         let databaseId = elementId.slice(6,)
 
-        // if the checkbox is checked, set the alcoholic value to true
-        // this true value can alternatively be accessed through 
+        // if the checkbox is checked, set the alcoholic value to true (this value would otherwise be "on")
         if (databaseId === "alcoholic") { 
-            formInput = alcoCheck.checked 
-            console.log("changed")
+            formInput = alcoCheck.checked;
         }
         // add the data to the newDrinkObj
         newDrinkObj[databaseId] = formInput;
