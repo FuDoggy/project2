@@ -6,6 +6,8 @@ const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
 const util = require("util");
 const path = require("path");
 var owasp = require('owasp-password-strength-test');
+// to bypass password strength tester, set STRONG_PASSWORD=true in .env file
+require("dotenv").config();
 
 
 module.exports = function(app) {
@@ -28,12 +30,14 @@ module.exports = function(app) {
     // Testing password strength:
     var result = owasp.test(req.body.password);
     
-    // FOR DEV PURPOSES PASSWORD IS ALWAYS SET TO STRONG
-    // IMPORTANT: REMOVE THIS LINE BEFORE DEPLOYMENT
+    // FOR DEV PURPOSES PASSWORD CAN BE SET TO ALWAYS BE STRONG
+    // IMPORTANT: THESE LINES MUST BE COMMENTED OUT BEFORE DEPLOYMENT
     // =============================================
     console.log(result);
-    result.strong = true;
+    result.strong = process.env.STRONG_PASSWORD;
     // =============================================
+
+
     // if password strength is sufficient, create user:
     if (result.strong) {
       db.User.create({

@@ -1,0 +1,6 @@
+-------------DEV SETTINGS----------------------
+tables are reinitialized upon server startup and database sync, in server.js
+db.sequelize.sync({force:true}) => set to false for deployment
+
+password strength is always strong, in api-routes.js under api/signup
+=> comment out or remove for deployment
