@@ -1,4 +1,6 @@
 
+// ingredients table not currently used
+
 module.exports = function (sequelize, DataTypes) {
   var Ingredient = sequelize.define("Ingredient", {
     ingredient_name: {

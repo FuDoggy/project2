@@ -20,6 +20,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
+  // must be authenticated...
+  app.get("/recipes", isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/recipes.html"));
+  })
   // all routes that are not specified will simply return the home page (if logged in)
   app.get("*", (req, res) => {
     // If the user already has an account send them to the members page

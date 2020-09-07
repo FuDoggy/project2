@@ -5,6 +5,13 @@ const allDrinks = require("../dev-shared-files/all-drinks.json");
 const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
 const util = require("util");
 const path = require("path");
+var owasp = require('owasp-password-strength-test');
+
+//==========REMOVE FOR DEPLOYMENT======================
+// to bypass password strength tester, set STRONG_PASSWORD=true in .env file
+require("dotenv").config();
+//==========REMOVE FOR DEPLOYMENT======================
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -14,7 +21,8 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
+      strong: true    // used to indicate a strong password when user is signing up
     });
   });
 
@@ -22,17 +30,34 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
-    db.User.create({
-      email: req.body.email,
-      password: req.body.password
-    })
-      .then(() => {
-        res.redirect(307, "/api/login");
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(401).json(err);
+    // Testing password strength:
+    var result = owasp.test(req.body.password);
+    
+    // FOR DEV PURPOSES PASSWORD CAN BE SET TO ALWAYS BE STRONG
+    // IMPORTANT: THESE LINES MUST BE COMMENTED OUT BEFORE DEPLOYMENT
+    // =============================================
+    console.log(process.env.STRONG_PASSWORD)
+    if (process.env.STRONG_PASSWORD === "yes") {
+      result.strong = true
+    }
+    // =============================================
+
+
+    // if password strength is sufficient, create user:
+    if (result.strong) {
+      db.User.create({
+        email: req.body.email,
+        password: req.body.password
+      }).then(() => {
+          res.redirect(307, "/api/login");
+      }).catch(err => {
+          console.log(err)
+          res.status(401).json(err);
       });
+    }
+    else {
+      res.json(result);
+    }
   });
 
 
