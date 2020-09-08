@@ -19,7 +19,11 @@
 
   <style>
     body { background-image:url('https://90xlnroh4b49ohwn4d7o5kxi-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/SHW_041318_BLOG_SweetTeaCocktail.png');background-repeat: no-repeat center center fixed;  -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover; background-size: cover;}
-   </style>
+  
+    #drink-type-checkboxes {
+      display: none;
+    }
+  </style>
  
 </head>
 
@@ -40,6 +44,33 @@
       <div class="form-group form-check">
         <input type="checkbox" class="recipe-inputs form-check-input" id="drink-alcoholic">
         <label class="form-check-label" for="alcoholic"><strong>Alcholic Drink?</strong></label>
+      </div>
+
+      <div id="drink-type-checkboxes">
+        <div class="form-group form-check">
+          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-rum">
+          <label class="form-check-label" for="rum"><strong>rum Drink?</strong></label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-whiskey">
+          <label class="form-check-label" for="whiskey"><strong>whiskey Drink?</strong></label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-tequila">
+          <label class="form-check-label" for="tequila"><strong>tequila Drink?</strong></label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-vodka">
+          <label class="form-check-label" for="vodka"><strong>vodka Drink?</strong></label>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-gin">
+          <label class="form-check-label" for="gin"><strong>gin Drink?</strong></label>
+        </div>
       </div>
 
       <div class="form-group">
@@ -72,8 +103,8 @@
     </form>
   </section>
 
-  <button type=button id=view-my-drinks>View all my recipes posted</button>
-  <button type="button" id='delete-my-drinks' data-value="">Delete a recipe from my recipes</button>
+  <button type=button id=view-my-drinks class="btn btn-success">View all my recipes posted</button>
+  <button type="button" id='delete-my-drinks' data-value="" class="btn btn-danger">Delete a recipe from my recipes</button>
 </body>
 
 </html>

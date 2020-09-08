@@ -1,11 +1,17 @@
 $(document).ready(() => {
     let userEmail = localStorage.getItem("express-bartender-userEmail");
     let userId = localStorage.getItem("express-bartender-userId");
+    let alcoCheck = document.getElementById("drink-alcoholic");
+
+    alcoCheck.checked ? $("#drink-type-checkboxes").css("display", "block") : null;
+
+    alcoCheck.addEventListener("click", function() {
+        $("#drink-type-checkboxes").slideToggle("slow")
+    });
 
 
     $("#recipe-form").on("submit", function(event) {
         event.preventDefault();
-        let alcoCheck = document.getElementById("drink-alcoholic");
         // this grabs the value of each field, since all inputs have a class of ".recipe-inputs"
         
         // Make sure that the user id exists.
@@ -28,10 +34,31 @@ $(document).ready(() => {
             // slice off the "drink-" portion of the id string
             let databaseId = elementId.slice(6,);
 
-            // if the checkbox is checked, set the alcoholic value to true (this value would otherwise be "on")
-            if (databaseId === "alcoholic") { 
-                formInput = alcoCheck.checked;
+            // if the "alcoholic" checkbox is checked, set the alcoholic value to true (this value would otherwise be "on")
+            // only allow the rum, whiskey etc checkboxes to be true if "alcoholic" is also true
+            switch (databaseId) {
+                case "alcoholic":
+                    formInput = alcoCheck.checked;
+                    break;
+                case "rum":
+                    alcoCheck.checked === true ? formInput = document.getElementById("drink-rum").checked : formInput = false;
+                    break;
+                case "whiskey":
+                    alcoCheck.checked === true ? formInput = document.getElementById("drink-whiskey").checked : formInput = false;
+                    break;
+                case "tequila":
+                    alcoCheck.checked === true ? formInput = document.getElementById("drink-tequila").checked : formInput = false;
+                    break;
+                case "vodka":
+                    alcoCheck.checked === true ? formInput = document.getElementById("drink-vodka").checked : formInput = false;
+                    break;
+                case "gin":
+                    alcoCheck.checked === true ? formInput = document.getElementById("drink-gin").checked : formInput = false;
+                    break;
+                default:
+                    break;
             }
+
             // add the data to the newDrinkObj
             newDrinkObj[databaseId] = formInput;
         }
