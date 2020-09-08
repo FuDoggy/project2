@@ -1,8 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const allDrinks = require("../dev-shared-files/all-drinks.json");
-const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
+const allDrinks = require("../dev-shared-files/scripts-get-ingredients/categories.json");
+const alcoholicDrinks = require("../dev-shared-files/scripts-get-ingredients/alcoholic-categories.json");
 const util = require("util");
 const path = require("path");
 var owasp = require('owasp-password-strength-test');
@@ -76,14 +76,25 @@ module.exports = function(app) {
   });
 
   app.get("/api/drinks", (req, res) => {
-    if (!req.user) {
-      res.json({});
-    } else {
+    // ================== ADD BACK IN FOR DEPLOYEMENT =======================
+    // if (!req.user) {
+    //   res.json({});
+    // } else {
+    // =============================================================
       db.Drink.findAll().then((result) => {
         res.json(result);
       })
-    }
+      //=======================ADD BACK IN FOR DEPLOYEMENT=============
+    // }
+    //=================================================
   })
+
+  // admin routes => =================== REMOVE before deployment===============
+  app.get("/api/admindrinks", (req,res)=> { db.Drink.findAll().then((result) => {
+    res.json(result);
+    })
+  })
+  // =========================================================================
 
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
@@ -179,6 +190,11 @@ async function seed(jsonFileName, alreadyEntered) {
         thumbnail: element.strDrinkThumb,
         video_url: element.strVideo || "",
         recipe,
+        rum: element.rum,
+        whiskey: element.whiskey,
+        gin: element.gin,
+        vodka: element.vodka,
+        tequila: element.tequila,
       }
     });
 
