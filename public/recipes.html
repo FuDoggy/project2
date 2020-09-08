@@ -17,46 +17,54 @@
 
   <script defer src="assets/js/recipes.js"></script>
 
+  <style>
+    body { background-image:url('https://mk0classicexper0r46w.kinstacdn.com/wp-content/uploads/2017/06/Rooftop-Lounges-and-Bars-Experience-in-Los-Angeles-3.jpg');background-repeat: no-repeat center center fixed;  -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover; background-size: cover;}
+   </style>
+ 
 </head>
 
-<body style="background-color: darkgrey">
+<!-- <body style="background-color: darkgrey"> -->
+<!-- <div style="background-image: url('https://i.pinimg.com/originals/7e/67/23/7e6723fe9851c4f9a466aa26187cb0e1.jpg')";background-repeat: no-repeat;> -->
 
   <!-- need form to get fields to fill out columns from drinks table -->
+  <br>
+  <br>
+  <br>
   <section class='container'>
     <form id="recipe-form">
       <div class="form-group">
-        <label for="drink-name">Name</label>
+        <label for="drink-name"><strong>Name</strong></label>
         <input type="text" class="form-control recipe-inputs" id="drink-name">
       </div>
 
       <div class="form-group form-check">
         <input type="checkbox" class="recipe-inputs form-check-input" id="drink-alcoholic">
-        <label class="form-check-label" for="alcoholic">Alcoholic?</label>
+        <label class="form-check-label" for="alcoholic">Alcoholic Drink?</label>
       </div>
 
       <div class="form-group">
-        <label for="drink-recipe">Recipe</label>
+        <label for="drink-recipe"><strong>Recipe</strong></label>
         <input type="text" class="recipe-inputs form-control" id="drink-recipe">
       </div>
 
       <div class="form-group">
-        <label for="drink-picture-url">Picture url</label>
+        <label for="drink-picture-url"><strong>Picture url</strong></label>
         <!-- picture upload? SQL can store images -->
         <input type="text" class="recipe-inputs form-control" id="drink-thumbnail">
       </div>
 
       <div class="form-group">
-        <label for="drink-instructions">Instructions</label>
+        <label for="drink-instructions"><strong>Instructions</strong></label>
         <input type="text" class="recipe-inputs form-control" id="drink-instructions">
       </div>
 
       <div class="form-group">
-        <label for="drink-glass">Glass</label>
+        <label for="drink-glass"><strong>Glass</strong></label>
         <input type="text" class="recipe-inputs form-control" id="drink-glass">
       </div>
 
       <div class="form-group">
-        <label for="drink-video-url">Video url</label>
+        <label for="drink-video-url"><strong>Video url</strong></label>
         <input type="text" class="recipe-inputs form-control" id="drink-video_url">
       </div>
 
