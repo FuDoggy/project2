@@ -6,6 +6,7 @@ $(document).ready(() => {
         let userId = localStorage.getItem("express-bartender-userId");
         // this grabs the value of each field, since all inputs have a class of ".recipe-inputs"
         
+        // Make sure that the user id exists.
         console.log(userId)
         if (userId === null) {
             alert("Error! Log in to post recipes.");
@@ -15,6 +16,7 @@ $(document).ready(() => {
             userId = Number(userId);
         }
 
+        // Creating a drink object to add to the SQL database:
         let newDrinkObj = {};
         for (let i = 0, j = $(".recipe-inputs").length; i < j; i++) {
             // get the value and id of each form input
@@ -31,9 +33,7 @@ $(document).ready(() => {
             // add the data to the newDrinkObj
             newDrinkObj[databaseId] = formInput;
         }
-        
-        // get the user email so we can associate the user with the stored recipe in the SQL database
-        
+
         // Associate the user ID with the drink object
         newDrinkObj["UserId"] = userId;
         // TODO next we have to validate the data - make sure fields are not null, etc. Sequelize queries will return errors and crash server if the errors are not properly handled
