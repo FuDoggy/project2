@@ -1,8 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const allDrinks = require("../dev-shared-files/all-drinks.json");
-const alcoholicDrinks = require("../dev-shared-files/alcoholic-drinks.json");
+const allDrinks = require("../dev-shared-files/scripts-get-ingredients/categories.json");
+const alcoholicDrinks = require("../dev-shared-files/scripts-get-ingredients/alcoholic-categories.json");
 const util = require("util");
 const path = require("path");
 var owasp = require('owasp-password-strength-test');
@@ -190,6 +190,11 @@ async function seed(jsonFileName, alreadyEntered) {
         thumbnail: element.strDrinkThumb,
         video_url: element.strVideo || "",
         recipe,
+        rum: element.rum,
+        whiskey: element.whiskey,
+        gin: element.gin,
+        vodka: element.vodka,
+        tequila: element.tequila,
       }
     });
 
