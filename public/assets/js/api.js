@@ -12,7 +12,8 @@ $(document).ready(function(){
 
     function appendDrinks(){
         for(let i = 0; i< allDrinks.length; i++){
-            $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].category}" id="${i}">
+          //clear .menu-container.html("").   return drinks from api/vodka.   
+          $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].category}" id="${i}">
             <img src="${allDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">${allDrinks[i].name} - ${allDrinks[i].category}</a><span></span>
@@ -20,7 +21,7 @@ $(document).ready(function(){
             <div class="menu-ingredients">
               ${allDrinks[i].recipe}
             </div>
-          </div>`)
+          `)
         }
         var menuIsotope = $('.menu-container').isotope({
             itemSelector: '.menu-item',
