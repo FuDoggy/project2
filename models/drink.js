@@ -36,6 +36,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     whiskey: {
       type: DataTypes.BOOLEAN
+    },
+    tequila: {
+      type: DataTypes.BOOLEAN
+    },
+    vodka: {
+      type: DataTypes.BOOLEAN
+    },
+    gin: {
+      type: DataTypes.BOOLEAN
     }
 
   });
