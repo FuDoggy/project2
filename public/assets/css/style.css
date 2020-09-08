@@ -1353,7 +1353,7 @@ section {
 /*--------------------------------------------------------------
 # Chefs
 --------------------------------------------------------------*/
-.chefs .member {
+.mixologists .member {
   text-align: center;
   margin-bottom: 20px;
   background: #343a40;
@@ -1361,7 +1361,7 @@ section {
   overflow: hidden;
 }
 
-.chefs .member .member-info {
+.mixologists .member .member-info {
   opacity: 0;
   position: absolute;
   bottom: 0;
@@ -1371,7 +1371,7 @@ section {
   transition: 0.2s;
 }
 
-.chefs .member .member-info-content {
+.mixologists .member .member-info-content {
   position: absolute;
   left: 0;
   right: 0;
@@ -1379,21 +1379,21 @@ section {
   transition: bottom 0.4s;
 }
 
-.chefs .member .member-info-content h4 {
+.mixologists .member .member-info-content h4 {
   font-weight: 700;
   margin-bottom: 2px;
   font-size: 18px;
   color: #fff;
 }
 
-.chefs .member .member-info-content span {
+.mixologists .member .member-info-content span {
   font-style: italic;
   display: block;
   font-size: 13px;
   color: #fff;
 }
 
-.chefs .member .social {
+.mixologists .member .social {
   position: absolute;
   left: 0;
   bottom: -38px;
@@ -1403,34 +1403,34 @@ section {
   text-align: center;
 }
 
-.chefs .member .social a {
+.mixologists .member .social a {
   transition: color 0.3s;
   color: #fff;
   margin: 0 10px;
   display: inline-block;
 }
 
-.chefs .member .social a:hover {
+.mixologists .member .social a:hover {
   color: #cda45e;
 }
 
-.chefs .member .social i {
+.mixologists .member .social i {
   font-size: 18px;
   margin: 0 2px;
 }
 
-.chefs .member:hover .member-info {
+.mixologists .member:hover .member-info {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 20%, rgba(0, 212, 255, 0) 100%);
   opacity: 1;
   transition: 0.4s;
 }
 
-.chefs .member:hover .member-info-content {
+.mixologists .member:hover .member-info-content {
   bottom: 60px;
   transition: bottom 0.4s;
 }
 
-.chefs .member:hover .social {
+.mixologists .member:hover .social {
   bottom: 0;
   transition: bottom ease-in-out 0.4s;
 }
