@@ -10,9 +10,56 @@ $(document).ready(function(){
         })
     }
 
+    function getAllRumDrinks(){
+      $.get("/api/rum")
+      .then((data)=> {
+          allDrinks = data.sort(()=> Math.random()- 0.5);
+        console.log(data)
+          appendDrinks()
+      })
+  }
+
+  function getAllVodkaDrinks(){
+    $.get("/api/vodka")
+    .then((data)=> {
+        allDrinks = data.sort(()=> Math.random()- 0.5);
+      console.log(data)
+        appendDrinks()
+    })
+}
+
+function getAllWhiskeyDrinks(){
+  $.get("/api/whiskey")
+  .then((data)=> {
+      allDrinks = data.sort(()=> Math.random()- 0.5);
+    console.log(data)
+      appendDrinks()
+  })
+}
+
+function getAllTequilaDrinks(){
+  $.get("/api/tequila")
+  .then((data)=> {
+      allDrinks = data.sort(()=> Math.random()- 0.5);
+    console.log(data)
+      appendDrinks()
+  })
+}
+
+function getAllGinDrinks(){
+  $.get("/api/gin")
+  .then((data)=> {
+      allDrinks = data.sort(()=> Math.random()- 0.5);
+    console.log(data)
+      appendDrinks()
+  })
+}
+
     function appendDrinks(){
-        for(let i = 0; i< allDrinks.length; i++){
-          //clear .menu-container.html("").   return drinks from api/vodka.   
+      $(".menu-container").html("") 
+     
+      
+      for(let i = 0; i< allDrinks.length; i++){
           $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].category}" id="${i}">
             <img src="${allDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
@@ -40,9 +87,28 @@ $(document).ready(function(){
                 once: true
               });
           });
+          $(".menu-container").attr("style", "height:620px !important")
     }
 
 getAllDrinks()
+$("#vodka").on("click", function(){
+  getAllVodkaDrinks()
+})
+$("#all_drinks").on("click", function(){
+  getAllDrinks()
+})
+$("#rum").on("click", function(){
+  getAllRumDrinks()
+})
+$("#whiskey").on("click", function(){
+  getAllWhiskeyDrinks()
+})
+$("#tequila").on("click", function(){
+  getAllTequilaDrinks()
+})
+$("#gin").on("click", function(){
+  getAllGinDrinks()
+})
 
 
 })
