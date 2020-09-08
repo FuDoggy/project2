@@ -26,9 +26,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     video_url: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
-    category: DataTypes.STRING
+    category: {
+      type: DataTypes.STRING
+    },
+    rum: {
+      type: DataTypes.BOOLEAN
+    },
+    whiskey: {
+      type: DataTypes.BOOLEAN
+    }
+
   });
 
   Drink.associate = function(models) {

@@ -91,6 +91,61 @@ module.exports = function(app) {
     await seed(alcoholicDrinks, alreadyEntered);
     res.json("seeded!")
   })
+
+  app.get("api/rum", (req, res) => {
+    db.Drink.findAll({where: {
+      rum: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("api/whiskey", (req, res) => {
+    db.Drink.findAll({where: {
+      whiskey: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("api/tequila", (req, res) => {
+    db.Drink.findAll({where: {
+      tequila: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("api/vodka", (req, res) => {
+    db.Drink.findAll({where: {
+      vodka: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("api/gin", (req, res) => {
+    db.Drink.findAll({where: {
+      gin: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
   
   app.post("api/drinks", (req, res) => {
     db.Drink.create(req.body).then((result) => {
