@@ -26,24 +26,41 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     video_url: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
-    category: DataTypes.STRING
+    category: {
+      type: DataTypes.STRING
+    },
+    rum: {
+      type: DataTypes.BOOLEAN
+    },
+    whiskey: {
+      type: DataTypes.BOOLEAN
+    },
+    tequila: {
+      type: DataTypes.BOOLEAN
+    },
+    vodka: {
+      type: DataTypes.BOOLEAN
+    },
+    gin: {
+      type: DataTypes.BOOLEAN
+    }
+
   });
 
   Drink.associate = function(models) {
-    Drink.hasOne(models.User, {
+    Drink.belongsTo(models.User, {
       onDelete: "NO ACTION"
     });
+    //ingredients table not currently used. 
+    // create a junction table for a many-to-many relationship
+    //   Drink.belongsToMany(models.Ingredient, {
+    //     onDelete: "NO ACTION",
+    //     through: "DrinkIngredients"
+    //   });
   }
-  //ingredients table not currently used
-  // create a junction table for a many-to-many relationship
-  Drink.associate = function(models) {
-    Drink.belongsToMany(models.Ingredient, {
-      onDelete: "NO ACTION",
-      through: "DrinkIngredients"
-    });
-  }
+
 
   return Drink;
 }

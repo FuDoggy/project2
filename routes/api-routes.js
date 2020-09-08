@@ -14,6 +14,7 @@ require("dotenv").config();
 
 
 module.exports = function(app) {
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -91,12 +92,69 @@ module.exports = function(app) {
     await seed(alcoholicDrinks, alreadyEntered);
     res.json("seeded!")
   })
+
+  app.get("/api/rum", (req, res) => {
+    db.Drink.findAll({where: {
+      rum: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
   
-  app.post("api/drinks", (req, res) => {
+  })
+
+  app.get("/api/whiskey", (req, res) => {
+    db.Drink.findAll({where: {
+      whiskey: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("/api/tequila", (req, res) => {
+    db.Drink.findAll({where: {
+      tequila: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("/api/vodka", (req, res) => {
+    db.Drink.findAll({where: {
+      vodka: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.get("/api/gin", (req, res) => {
+    db.Drink.findAll({where: {
+      gin: {
+        type: true
+      }
+    }}).then(function(results) {
+      res.json(results)
+    });
+  
+  })
+
+  app.post("/api/drinks/new", (req, res) => {
+    console.log(req.body)
     db.Drink.create(req.body).then((result) => {
       res.status(200).end();
     })
   })
+
 };
 
 
