@@ -29,7 +29,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
     category: DataTypes.STRING
-  });
+  },
+  
+  );
 
   Drink.associate = function(models) {
     Drink.hasOne(models.User, {
