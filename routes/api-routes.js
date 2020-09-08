@@ -14,6 +14,7 @@ require("dotenv").config();
 
 
 module.exports = function(app) {
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -75,14 +76,25 @@ module.exports = function(app) {
   });
 
   app.get("/api/drinks", (req, res) => {
-    if (!req.user) {
-      res.json({});
-    } else {
+    // ================== ADD BACK IN FOR DEPLOYEMENT =======================
+    // if (!req.user) {
+    //   res.json({});
+    // } else {
+    // =============================================================
       db.Drink.findAll().then((result) => {
         res.json(result);
       })
-    }
+      //=======================ADD BACK IN FOR DEPLOYEMENT=============
+    // }
+    //=================================================
   })
+
+  // admin routes => =================== REMOVE before deployment===============
+  app.get("/api/admindrinks", (req,res)=> { db.Drink.findAll().then((result) => {
+    res.json(result);
+    })
+  })
+  // =========================================================================
 
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
@@ -92,7 +104,7 @@ module.exports = function(app) {
     res.json("seeded!")
   })
 
-  app.get("api/rum", (req, res) => {
+  app.get("/api/rum", (req, res) => {
     db.Drink.findAll({where: {
       rum: {
         type: true
@@ -103,7 +115,7 @@ module.exports = function(app) {
   
   })
 
-  app.get("api/whiskey", (req, res) => {
+  app.get("/api/whiskey", (req, res) => {
     db.Drink.findAll({where: {
       whiskey: {
         type: true
@@ -114,7 +126,7 @@ module.exports = function(app) {
   
   })
 
-  app.get("api/tequila", (req, res) => {
+  app.get("/api/tequila", (req, res) => {
     db.Drink.findAll({where: {
       tequila: {
         type: true
@@ -125,7 +137,7 @@ module.exports = function(app) {
   
   })
 
-  app.get("api/vodka", (req, res) => {
+  app.get("/api/vodka", (req, res) => {
     db.Drink.findAll({where: {
       vodka: {
         type: true
@@ -136,7 +148,7 @@ module.exports = function(app) {
   
   })
 
-  app.get("api/gin", (req, res) => {
+  app.get("/api/gin", (req, res) => {
     db.Drink.findAll({where: {
       gin: {
         type: true
@@ -146,12 +158,14 @@ module.exports = function(app) {
     });
   
   })
-  
-  app.post("api/drinks", (req, res) => {
+
+  app.post("/api/drinks/new", (req, res) => {
+    console.log(req.body)
     db.Drink.create(req.body).then((result) => {
       res.status(200).end();
     })
   })
+
 };
 
 

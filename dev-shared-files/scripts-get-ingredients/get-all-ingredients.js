@@ -4,7 +4,7 @@ const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
 
-const FILENAME = "../all-drinks.json"
+const FILENAME = "./dev-shared-files/alcoholic-drinks.json"
 
 /** gets all ingredients from the file and stores as json */
 async function getIngredients() {

@@ -13,3 +13,6 @@ bypass login page, using 'BYPASS_AUTHENTICATION=yes' in .env
 Remember to delete 
 require("dotenv").config();
 from files as well, from api-routes.js, isAuthenticated.js
+
+
+for api routes => make accessible only if req.user => so that api can only be accessed when logged in
