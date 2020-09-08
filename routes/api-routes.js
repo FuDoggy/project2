@@ -76,14 +76,25 @@ module.exports = function(app) {
   });
 
   app.get("/api/drinks", (req, res) => {
-    if (!req.user) {
-      res.json({});
-    } else {
+    // ================== ADD BACK IN FOR DEPLOYEMENT =======================
+    // if (!req.user) {
+    //   res.json({});
+    // } else {
+    // =============================================================
       db.Drink.findAll().then((result) => {
         res.json(result);
       })
-    }
+      //=======================ADD BACK IN FOR DEPLOYEMENT=============
+    // }
+    //=================================================
   })
+
+  // admin routes => =================== REMOVE before deployment===============
+  app.get("/api/admindrinks", (req,res)=> { db.Drink.findAll().then((result) => {
+    res.json(result);
+    })
+  })
+  // =========================================================================
 
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
