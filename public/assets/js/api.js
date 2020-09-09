@@ -1,6 +1,7 @@
 $(document).ready(function(){
     let allDrinks = [];
-    let filteredDrinks = []
+    let filteredDrinks = [];
+    let nonalc = [];
 
 
 function getDrinks(drink){
@@ -13,6 +14,16 @@ function getDrinks(drink){
   })
 }
 
+function getNonAlcoholicDrinks(){
+  $.get(`/api/non-alcoholic`)
+  .then((data)=> {
+      console.log(data);
+      nonalc = data.sort(()=> Math.random() - 0.5);
+      appendNonalc()
+  })
+}
+
+
 $("#Search").on("input", function() {
   const val = $(this).val().trim()
   console.log(val)
@@ -24,11 +35,30 @@ $("#Search").on("input", function() {
   appendDrinks()
 })
 
+function appendNonalc(){
+  //do some stuff and add nonAlc to the section
+  for(let i = 1; i< 6; i++){
+    $(`#tabhead${i}`).text(nonalc[i].name);
+    $(`#tab-${i}`).append(`
+    <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>${nonalc[i].name}</h3>
+                    <p class="font-italic">${nonalc[i].recipe}</p>
+                    <p>${nonalc[i].instructions}</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="${nonalc[i].thumbnail}" alt="non alcoholic drink image" class="img-fluid">
+                  </div>
+                </div>
+    `)
+  }
+}
+
     function appendDrinks(){
       $(".menu-container").html("") 
      
       
-      for(let i = 0; i< filteredDrinks.length; i++){
+      for(let i = 0; i< 8; i++){
           $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${filteredDrinks[i].category}" id="${i}">
             <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
@@ -58,12 +88,14 @@ $("#Search").on("input", function() {
                 once: true
               });
           });
-          $(".menu-container").attr("style", "height:620px !important")
+          $(".menu-container").attr("style", "height:650px !important")
     }
 
 getDrinks('drinks')
+getNonAlcoholicDrinks('drinks')
 $(".drinkTab").on("click", function(){
   getDrinks($(this).attr("id"))
 })
 
 })
+
