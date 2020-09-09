@@ -32,7 +32,9 @@ $("#Search").on("input", function() {
           $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${filteredDrinks[i].category}" id="${i}">
             <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">${filteredDrinks[i].name} - ${filteredDrinks[i].category}</a><span></span>
+
+              <a href="#">${allDrinks[i].name}</a><span></span>
+
             </div>
             <div class="menu-ingredients">
               ${filteredDrinks[i].recipe}
