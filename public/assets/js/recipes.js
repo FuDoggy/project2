@@ -4,6 +4,7 @@ $(document).ready(() => {
     let alcoCheck = document.getElementById("drink-alcoholic");
     let recipeForm = $("#recipe-form");
     let drinkToggleBtn = $("#view-my-drinks");
+    let currentRecipeUpdateBtn = $("#update-current-recipe");
 
     // upon page load, if alcoholic checkbox is already checked, display the other checkboxes:
     alcoCheck.checked ? $("#drink-type-checkboxes").css("display", "block") : null;
@@ -69,6 +70,8 @@ $(document).ready(() => {
 
         // Associate the user ID with the drink object
         newDrinkObj["UserId"] = userId;
+        // hardcode a placeholder image
+        newDrinkObj["thumbnail"] = "https://www.standard.co.uk/s3fs-public/thumbnails/image/2016/09/30/10/cocktails.jpg"
         // TODO next we have to validate the data - make sure fields are not null, etc. Sequelize queries will return errors and crash server if the errors are not properly handled
 
         // TODO pictures? videos? we need to decide what we are posting to the database. 
@@ -79,7 +82,15 @@ $(document).ready(() => {
 
         // Finally, the last step is $.post the new drink object to the database
         console.log(newDrinkObj);
-        $.post("/api/drinks/new", newDrinkObj);
+        $.post("/api/drinks/new", newDrinkObj).then(() => {
+            $(".save-indicator").slideToggle("slow", function() {
+                setTimeout(() => {
+                    $(".save-indicator").slideToggle("slow");
+                },
+                1000
+                );
+            });
+        })
         
     });
 
@@ -89,14 +100,18 @@ $(document).ready(() => {
         // if the recipe form is still showing, hide it
         if (document.getElementById("recipe-form").style.display !== "none") {
             recipeForm.slideToggle("slow")
-        
+
+            // hide the update current recipe button
+            currentRecipeUpdateBtn.attr("style", "display:none");
+
             // change the button text
             drinkToggleBtn.text("Post a new recipe");
 
             // then get the recipes from the database
             console.log("clicked");
             queryUrl = "/api/drinks/user/" + userId
-            $.get(queryUrl).then((data) => {
+            $.get(queryUrl)
+            .then((data) => {
                 console.log("data is")
                 console.log(data);
                 $("#user-recipe-section").html("");
@@ -124,10 +139,12 @@ $(document).ready(() => {
                         <li>The glass for this drink is: ${data[i].glass}</li>
                     `;
                     addDeleteFunctionality(data[i].id, data[i].name)
-                    addUpdateFunctionality(data[i].id)
+                    addUpdateFunctionality(data[i])
                 }
-                $("#user-recipe-section").slideToggle("slow")
             })
+            .then(() => {
+                $("#user-recipe-section").slideToggle("slow");
+            });
         }
         // if already showing the user recipes, switch back to the recipe entry form:
         else {
@@ -136,29 +153,37 @@ $(document).ready(() => {
             $("#user-recipe-section").slideToggle("slow");
         }
     })
+
+    function addDeleteFunctionality(delBtnId, name) {
+        $(`#del-btn-${delBtnId}`).on("click", () => {
+            let deleteConfirm = confirm(`Are you sure you would like to delete the recipe for ${name}?`)
+            if (deleteConfirm) {
+                let queryUrl = "/api/drinks/user/" + delBtnId
+                let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
+                document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+                $.ajax({
+                    url: queryUrl,
+                    method: "delete"
+                })
+            }
+        });
+    }
+
+    /** Adds an event listener to a button to update a recipe. the data parameter includes id, name, recipe, etc. */
+    function addUpdateFunctionality(data) {
+        $(`#update-btn-${data.id}`).on("click", () => {
+            // switch back to the recipe form with values to update
+            recipeForm.slideToggle("slow")
+            $("#user-recipe-section").slideToggle("slow");
+            currentRecipeUpdateBtn.attr("style", "display:inline-block");
+            currentRecipeUpdateBtn.text(`Update the recipe for ${data.name}`);
+            drinkToggleBtn.text("View all my recipes posted");
+            // add in an update this recipe button as well as keep the add new recipe button
+            console.log("clicked");
+            console.log("hi")
+            console.log(data)
+        })
+    }
 });
 
-
-function addDeleteFunctionality(delBtnId, name) {
-    $(`#del-btn-${delBtnId}`).on("click", () => {
-        let deleteConfirm = confirm(`Are you sure you would like to delete the recipe for ${name}?`)
-        if (deleteConfirm) {
-            let queryUrl = "/api/drinks/user/" + delBtnId
-            let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
-            document.getElementById("user-recipe-section").removeChild(recipeToRemove);
-            $.ajax({
-                url: queryUrl,
-                method: "delete"
-            })
-        }
-    });
-}
-
-/** Adds an event listener to a button to update a recipe. the data parameter includes id, name, recipe, etc. */
-function addUpdateFunctionality(id) {
-    console.log(id)
-    $(`#update-btn-${id}`).on("click", () => {
-        console.log("clicked");
-    })
-
-}
+// set picture url
