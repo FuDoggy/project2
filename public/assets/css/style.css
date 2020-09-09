@@ -1775,3 +1775,67 @@ section {
   padding: 15px;
   text-align: center;
 }
+
+/* MODAL STYLING FOR COCKTAILS */
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* flip card animation */
+.flip-card {
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  
+}
+
+.flip-front  {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-color: darkslategrey;
+  color: whitesmoke;
+  border-radius: 5px;
+  box-shadow: 3px 3px  whitesmoke;
+}
+
+.flip-back::-webkit-scrollbar {
+  display: none;
+}
+
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-color: darkcyan;
+  color: whitesmoke;
+  transform: rotateX(180deg);
+  border-radius: 5px;
+  box-shadow: 3px 3px whitesmoke;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+
