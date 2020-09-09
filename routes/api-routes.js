@@ -109,7 +109,7 @@ module.exports = function(app) {
       rum: true
     },
     
-      limit: 10
+      limit: 8
   
   }).then(function(results) {
       res.json(results)
@@ -121,7 +121,7 @@ module.exports = function(app) {
     db.Drink.findAll({where: {
       whiskey: true
     },
-    limit: 10
+    limit: 8
   }).then(function(results) {
       res.json(results)
     });
@@ -132,7 +132,7 @@ module.exports = function(app) {
     db.Drink.findAll({where: {
       tequila: true
     },
-    limit: 10
+    limit: 8
   }).then(function(results) {
       res.json(results)
     });
@@ -143,7 +143,7 @@ module.exports = function(app) {
     db.Drink.findAll({where: {
       vodka: true
     },
-    limit: 10
+    limit: 8
   }).then(function(results) {
       res.json(results)
     });
@@ -154,7 +154,7 @@ module.exports = function(app) {
     db.Drink.findAll({where: {
       gin: true
     },
-    limit: 10
+    limit: 8
   }).then(function(results) {
       res.json(results)
     });
