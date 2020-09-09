@@ -107,11 +107,11 @@ $(document).ready(() => {
                     let drinkListItem = document.getElementById("user-recipe-section");
                     let newRow = document.createElement("div");
                     newRow.setAttribute("class", "row");
-                    newRow.setAttribute("id", `recipe-${data[i].id}`)
+                    newRow.setAttribute("id", `recipe-${data[i].id}`);
                     drinkListItem.appendChild(newRow);
 
                     // then append a paragraph to that row
-                    let newList = document.createElement("ul")
+                    let newList = document.createElement("ul");
                     newList.setAttribute("class", `col-md-12 user-drink`);
                     newRow.appendChild(newList);
                     
@@ -122,7 +122,7 @@ $(document).ready(() => {
                         <li>The instructions for making this drink are: ${data[i].instructions}</li>
                         <li>The glass for this drink is: ${data[i].glass}</li>
                     `;
-                    addDeleteFunctionality(data[i].id)
+                    addDeleteFunctionality(data[i].id, data[i].name)
                 }
                 $("#user-recipe-section").slideToggle("slow")
             })
@@ -136,10 +136,20 @@ $(document).ready(() => {
     })
 });
 
-function addDeleteFunctionality(delBtnId) {
+function addDeleteFunctionality(delBtnId, name) {
     $(`#del-btn-${delBtnId}`).on("click", () => {
-        console.log("clicked!")
-        let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
-        document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+        let deleteConfirm = confirm(`Are you sure you would like to delete the recipe for ${name}?`)
+        if (deleteConfirm) {
+            let queryUrl = "/api/drinks/user/" + delBtnId
+            let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
+            document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+            $.ajax({
+                url: queryUrl,
+                method: "delete"
+            }).then(() => {
+                console.log("deleted")
+            })
+        
+        }
     });
 }

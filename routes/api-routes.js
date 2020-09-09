@@ -181,6 +181,16 @@ module.exports = function(app) {
       res.json(result);
     })
   });
+
+  app.delete("/api/drinks/user/:drinkId", (req, res) => {
+    db.Drink.destroy({
+      where: {
+        id: req.params.drinkId
+      }
+    }).then((result) => {
+      res.status(200).end();
+    });
+  });
 };
 
 
