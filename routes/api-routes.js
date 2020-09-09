@@ -168,6 +168,19 @@ module.exports = function(app) {
     })
   })
 
+  app.get("/api/drinks/user/:userId", (req, res) => {
+    console.log(req.params);
+    console.log("hi")
+    db.Drink.findAll({
+      where: {
+        UserId: req.params.userId
+      }
+    }).then((result) => {
+      console.log("is result")
+      console.log(result);
+      res.json(result);
+    })
+  });
 };
 
 
@@ -203,13 +216,12 @@ async function seed(jsonFileName, alreadyEntered) {
 
     for(let i = 0; i< data.length; i++){
       // add to database, but don't add duplicates
-      // console.log(data[i])
-      // console.log(data[i]["name"])
       if (!alreadyEntered.includes(data[i]["name"])) {
+        // create entry in sql table:
         await db.Drink.create(data[i])
         console.log(`index ${i} completed!`)
+        // push entry into already entered array, to prevent duplicate
         alreadyEntered.push(data[i]["name"]);
-        // console.log(alreadyEntered)
       }
       else {
         console.log(`$Index ${i} ${data[i]["name"]} is already in the database!`)
