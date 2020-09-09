@@ -1,72 +1,43 @@
 $(document).ready(function(){
     let allDrinks = [];
+    let filteredDrinks = []
 
-    function getAllDrinks(){
-        $.get("/api/drinks")
-        .then((data)=> {
-            allDrinks = data.sort(()=> Math.random()- 0.5);
-          console.log(data)
-            appendDrinks()
-        })
-    }
 
-    function getAllRumDrinks(){
-      $.get("/api/rum")
-      .then((data)=> {
-          allDrinks = data.sort(()=> Math.random()- 0.5);
-        console.log(data)
-          appendDrinks()
-      })
-  }
-
-  function getAllVodkaDrinks(){
-    $.get("/api/vodka")
-    .then((data)=> {
-        allDrinks = data.sort(()=> Math.random()- 0.5);
-      console.log(data)
-        appendDrinks()
-    })
-}
-
-function getAllWhiskeyDrinks(){
-  $.get("/api/whiskey")
+function getDrinks(drink){
+  $.get(`/api/${drink}`)
   .then((data)=> {
       allDrinks = data.sort(()=> Math.random()- 0.5);
+      filteredDrinks = [...allDrinks];
     console.log(data)
       appendDrinks()
   })
 }
 
-function getAllTequilaDrinks(){
-  $.get("/api/tequila")
-  .then((data)=> {
-      allDrinks = data.sort(()=> Math.random()- 0.5);
-    console.log(data)
-      appendDrinks()
+$("#Search").on("input", function() {
+  const val = $(this).val().trim()
+  console.log(val)
+  filteredDrinks = allDrinks.filter(function(drink) {
+    const pattern = new RegExp(val, "gi");
+    return pattern.test(drink.name) || pattern.test(drink.recipe)
   })
-}
-
-function getAllGinDrinks(){
-  $.get("/api/gin")
-  .then((data)=> {
-      allDrinks = data.sort(()=> Math.random()- 0.5);
-    console.log(data)
-      appendDrinks()
-  })
-}
+  console.log(filteredDrinks)
+  appendDrinks()
+})
 
     function appendDrinks(){
       $(".menu-container").html("") 
      
       
-      for(let i = 0; i< allDrinks.length; i++){
-          $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].category}" id="${i}">
-            <img src="${allDrinks[i].thumbnail}" class="menu-img" alt="">
+      for(let i = 0; i< filteredDrinks.length; i++){
+          $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${filteredDrinks[i].category}" id="${i}">
+            <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">${allDrinks[i].name} - ${allDrinks[i].category}</a><span></span>
+
+              <a href="#">${allDrinks[i].name}</a><span></span>
+
             </div>
             <div class="menu-ingredients">
-              ${allDrinks[i].recipe}
+              ${filteredDrinks[i].recipe}
             </div>
           `)
         }
@@ -90,25 +61,9 @@ function getAllGinDrinks(){
           $(".menu-container").attr("style", "height:620px !important")
     }
 
-getAllDrinks()
-$("#vodka").on("click", function(){
-  getAllVodkaDrinks()
+getDrinks('drinks')
+$(".drinkTab").on("click", function(){
+  getDrinks($(this).attr("id"))
 })
-$("#all_drinks").on("click", function(){
-  getAllDrinks()
-})
-$("#rum").on("click", function(){
-  getAllRumDrinks()
-})
-$("#whiskey").on("click", function(){
-  getAllWhiskeyDrinks()
-})
-$("#tequila").on("click", function(){
-  getAllTequilaDrinks()
-})
-$("#gin").on("click", function(){
-  getAllGinDrinks()
-})
-
 
 })
