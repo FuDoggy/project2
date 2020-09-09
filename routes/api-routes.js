@@ -196,6 +196,11 @@ module.exports = function(app) {
       res.status(200).end();
     });
   });
+
+  app.put("/api/drinks/:userId/:drinkId", (req, res) => {
+    console.log(req.params)
+    res.status(200).end();
+  });
 };
 
 

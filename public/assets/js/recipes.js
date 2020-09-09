@@ -191,6 +191,15 @@ $(document).ready(() => {
             for (let elem of drinkType) {
                 document.getElementById(`drink-${elem}`).checked = data[elem];
             }
+
+            // add update request to update the database
+            currentRecipeUpdateBtn.on("click", function() {
+                let queryUrl = `/api/drinks/${data.UserId}/${data.id}`
+                $.ajax({
+                    url: queryUrl,
+                    method: "PUT"
+                })
+            })
         })
     }
 });
