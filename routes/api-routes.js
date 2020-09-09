@@ -106,10 +106,12 @@ module.exports = function(app) {
 
   app.get("/api/rum", (req, res) => {
     db.Drink.findAll({where: {
-      rum: {
-        type: true
-      }
-    }}).then(function(results) {
+      rum: true
+    },
+    
+      limit: 10
+  
+  }).then(function(results) {
       res.json(results)
     });
   
@@ -117,10 +119,10 @@ module.exports = function(app) {
 
   app.get("/api/whiskey", (req, res) => {
     db.Drink.findAll({where: {
-      whiskey: {
-        type: true
-      }
-    }}).then(function(results) {
+      whiskey: true
+    },
+    limit: 10
+  }).then(function(results) {
       res.json(results)
     });
   
@@ -128,10 +130,10 @@ module.exports = function(app) {
 
   app.get("/api/tequila", (req, res) => {
     db.Drink.findAll({where: {
-      tequila: {
-        type: true
-      }
-    }}).then(function(results) {
+      tequila: true
+    },
+    limit: 10
+  }).then(function(results) {
       res.json(results)
     });
   
@@ -139,10 +141,10 @@ module.exports = function(app) {
 
   app.get("/api/vodka", (req, res) => {
     db.Drink.findAll({where: {
-      vodka: {
-        type: true
-      }
-    }}).then(function(results) {
+      vodka: true
+    },
+    limit: 10
+  }).then(function(results) {
       res.json(results)
     });
   
@@ -150,10 +152,10 @@ module.exports = function(app) {
 
   app.get("/api/gin", (req, res) => {
     db.Drink.findAll({where: {
-      gin: {
-        type: true
-      }
-    }}).then(function(results) {
+      gin: true
+    },
+    limit: 10
+  }).then(function(results) {
       res.json(results)
     });
   
