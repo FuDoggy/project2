@@ -967,10 +967,8 @@ section {
 }
 
 .menu-container {
-  max-height: 650px!important;
-  overflow-y: hidden;
+  min-height:fit-content!important;
 }
-
 /*--------------------------------------------------------------
 # Specials
 --------------------------------------------------------------*/

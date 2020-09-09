@@ -161,6 +161,15 @@ module.exports = function(app) {
   
   })
 
+  app.get("/api/non-alcoholic", (req,res)=> {
+    db.Drink.findAll({where: {
+      alcoholic: 0
+    },
+  }).then(function(results){
+    res.json(results)
+  });
+  })
+
   app.post("/api/drinks/new", (req, res) => {
     console.log(req.body)
     db.Drink.create(req.body).then((result) => {
