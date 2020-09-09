@@ -107,19 +107,22 @@ $(document).ready(() => {
                     let drinkListItem = document.getElementById("user-recipe-section");
                     let newRow = document.createElement("div");
                     newRow.setAttribute("class", "row");
+                    newRow.setAttribute("id", `recipe-${data[i].id}`)
                     drinkListItem.appendChild(newRow);
 
                     // then append a paragraph to that row
                     let newList = document.createElement("ul")
-                    newList.setAttribute("class", `col-md-12 user-drink data-id=${data[i].id}`)
+                    newList.setAttribute("class", `col-md-12 user-drink`);
                     newRow.appendChild(newList);
                     
                     // then set the contents of the paragraph to be a list
                     newList.innerHTML = `
+                    <button class='delete-button float-right btn btn-warning' id='del-btn-${data[i].id}'>Delete this recipe</button>
                         <li>The name of this drink is: ${data[i].name}</li>
                         <li>The instructions for making this drink are: ${data[i].instructions}</li>
                         <li>The glass for this drink is: ${data[i].glass}</li>
                     `;
+                    addDeleteFunctionality(data[i].id)
                 }
                 $("#user-recipe-section").slideToggle("slow")
             })
@@ -132,3 +135,11 @@ $(document).ready(() => {
         }
     })
 });
+
+function addDeleteFunctionality(delBtnId) {
+    $(`#del-btn-${delBtnId}`).on("click", () => {
+        console.log("clicked!")
+        let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
+        document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+    });
+}
