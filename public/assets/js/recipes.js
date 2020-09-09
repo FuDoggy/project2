@@ -117,12 +117,14 @@ $(document).ready(() => {
                     
                     // then set the contents of the paragraph to be a list
                     newList.innerHTML = `
-                    <button class='delete-button float-right btn btn-warning' id='del-btn-${data[i].id}'>Delete this recipe</button>
+                        <button type=button class='delete-button float-right btn btn-warning' id='del-btn-${data[i].id}'>Delete this recipe</button>
+                        <button type=button class='update-button float-right btn btn-info' id='update-btn-${data[i].id}'>Update this recipe</button>
                         <li>The name of this drink is: ${data[i].name}</li>
                         <li>The instructions for making this drink are: ${data[i].instructions}</li>
                         <li>The glass for this drink is: ${data[i].glass}</li>
                     `;
                     addDeleteFunctionality(data[i].id, data[i].name)
+                    addUpdateFunctionality(data[i].id)
                 }
                 $("#user-recipe-section").slideToggle("slow")
             })
@@ -146,10 +148,16 @@ function addDeleteFunctionality(delBtnId, name) {
             $.ajax({
                 url: queryUrl,
                 method: "delete"
-            }).then(() => {
-                console.log("deleted")
             })
-        
         }
     });
+}
+
+/** Adds an event listener to a button to update a recipe. the data parameter includes id, name, recipe, etc. */
+function addUpdateFunctionality(data) {
+    console.log(data.id)
+    $(`#update-btn-${data.id}`).on("click", () => {
+        console.log("clicked");
+    })
+
 }
