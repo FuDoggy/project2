@@ -3,6 +3,7 @@ $(document).ready(() => {
     let userId = localStorage.getItem("express-bartender-userId");
     let alcoCheck = document.getElementById("drink-alcoholic");
     let recipeForm = $("#recipe-form");
+    let drinkToggleBtn = $("#view-my-drinks");
 
     // upon page load, if alcoholic checkbox is already checked, display the other checkboxes:
     alcoCheck.checked ? $("#drink-type-checkboxes").css("display", "block") : null;
@@ -83,37 +84,51 @@ $(document).ready(() => {
     });
 
     // upon clicking the view my drinks button, view the user's drinks
-    $("#view-my-drinks").on("click", function() {
+    drinkToggleBtn.on("click", function() {
+
+        // if the recipe form is still showing, hide it
         if (document.getElementById("recipe-form").style.display !== "none") {
             recipeForm.slideToggle("slow")
+        
+            // change the button text
+            drinkToggleBtn.text("Post a new recipe");
+
+            // then get the recipes from the database
+            console.log("clicked");
+            queryUrl = "/api/drinks/user/" + userId
+            $.get(queryUrl).then((data) => {
+                console.log("data is")
+                console.log(data);
+                $("#user-recipe-section").html("");
+
+                // for each recipe:
+                for (let i in data) {
+                    // first append a new row
+                    let drinkListItem = document.getElementById("user-recipe-section");
+                    let newRow = document.createElement("div");
+                    newRow.setAttribute("class", "row");
+                    drinkListItem.appendChild(newRow);
+
+                    // then append a paragraph to that row
+                    let newList = document.createElement("ul")
+                    newList.setAttribute("class", `col-md-12 user-drink data-id=${data[i].id}`)
+                    newRow.appendChild(newList);
+                    
+                    // then set the contents of the paragraph to be a list
+                    newList.innerHTML = `
+                        <li>The name of this drink is: ${data[i].name}</li>
+                        <li>The instructions for making this drink are: ${data[i].instructions}</li>
+                        <li>The glass for this drink is: ${data[i].glass}</li>
+                    `;
+                }
+                $("#user-recipe-section").slideToggle("slow")
+            })
         }
-        console.log("clicked");
-        queryUrl = "/api/drinks/user/" + userId
-        $.get(queryUrl).then((data) => {
-            console.log("data is")
-            console.log(data);
-            $("#user-recipe-section").html("");
-
-            // for each recipe:
-            for (let i in data) {
-                // first append a new row
-                let drinkListItem = document.getElementById("user-recipe-section");
-                let newRow = document.createElement("div");
-                newRow.setAttribute("class", "row");
-                drinkListItem.appendChild(newRow);
-
-                // then append a paragraph to that row
-                let newList = document.createElement("ul")
-                newList.setAttribute("class", `col-md-12 user-drink data-id=${data[i].id}`)
-                newRow.appendChild(newList);
-                
-                // then set the contents of the paragraph to be a list
-                newList.innerHTML = `
-                    <li>The name of this drink is: ${data[i].name}</li>
-                    <li>The instructions for making this drink are: ${data[i].instructions}</li>
-                    <li>The glass for this drink is: ${data[i].glass}</li>
-                `;
-            }
-        })
+        // if already showing the user recipes, switch back to the recipe entry form:
+        else {
+            drinkToggleBtn.text("View all my recipes posted");
+            recipeForm.slideToggle("slow");
+            $("#user-recipe-section").slideToggle("slow");
+        }
     })
 });
