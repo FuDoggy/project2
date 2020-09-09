@@ -178,17 +178,23 @@ module.exports = function(app) {
   })
 
   app.get("/api/drinks/user/:userId", (req, res) => {
-    console.log(req.params);
-    console.log("hi")
     db.Drink.findAll({
       where: {
         UserId: req.params.userId
       }
     }).then((result) => {
-      console.log("is result")
-      console.log(result);
       res.json(result);
     })
+  });
+
+  app.delete("/api/drinks/user/:drinkId", (req, res) => {
+    db.Drink.destroy({
+      where: {
+        id: req.params.drinkId
+      }
+    }).then((result) => {
+      res.status(200).end();
+    });
   });
 };
 

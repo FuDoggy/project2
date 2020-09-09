@@ -107,19 +107,24 @@ $(document).ready(() => {
                     let drinkListItem = document.getElementById("user-recipe-section");
                     let newRow = document.createElement("div");
                     newRow.setAttribute("class", "row");
+                    newRow.setAttribute("id", `recipe-${data[i].id}`);
                     drinkListItem.appendChild(newRow);
 
                     // then append a paragraph to that row
-                    let newList = document.createElement("ul")
-                    newList.setAttribute("class", `col-md-12 user-drink data-id=${data[i].id}`)
+                    let newList = document.createElement("ul");
+                    newList.setAttribute("class", `col-md-12 user-drink`);
                     newRow.appendChild(newList);
                     
                     // then set the contents of the paragraph to be a list
                     newList.innerHTML = `
+                        <button type=button class='delete-button float-right btn btn-warning' id='del-btn-${data[i].id}'>Delete this recipe</button>
+                        <button type=button class='update-button float-right btn btn-info' id='update-btn-${data[i].id}'>Update this recipe</button>
                         <li>The name of this drink is: ${data[i].name}</li>
                         <li>The instructions for making this drink are: ${data[i].instructions}</li>
                         <li>The glass for this drink is: ${data[i].glass}</li>
                     `;
+                    addDeleteFunctionality(data[i].id, data[i].name)
+                    addUpdateFunctionality(data[i].id)
                 }
                 $("#user-recipe-section").slideToggle("slow")
             })
@@ -132,3 +137,27 @@ $(document).ready(() => {
         }
     })
 });
+
+function addDeleteFunctionality(delBtnId, name) {
+    $(`#del-btn-${delBtnId}`).on("click", () => {
+        let deleteConfirm = confirm(`Are you sure you would like to delete the recipe for ${name}?`)
+        if (deleteConfirm) {
+            let queryUrl = "/api/drinks/user/" + delBtnId
+            let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
+            document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+            $.ajax({
+                url: queryUrl,
+                method: "delete"
+            })
+        }
+    });
+}
+
+/** Adds an event listener to a button to update a recipe. the data parameter includes id, name, recipe, etc. */
+function addUpdateFunctionality(data) {
+    console.log(data.id)
+    $(`#update-btn-${data.id}`).on("click", () => {
+        console.log("clicked");
+    })
+
+}
