@@ -138,6 +138,7 @@ $(document).ready(() => {
     })
 });
 
+
 function addDeleteFunctionality(delBtnId, name) {
     $(`#del-btn-${delBtnId}`).on("click", () => {
         let deleteConfirm = confirm(`Are you sure you would like to delete the recipe for ${name}?`)
@@ -154,9 +155,9 @@ function addDeleteFunctionality(delBtnId, name) {
 }
 
 /** Adds an event listener to a button to update a recipe. the data parameter includes id, name, recipe, etc. */
-function addUpdateFunctionality(data) {
-    console.log(data.id)
-    $(`#update-btn-${data.id}`).on("click", () => {
+function addUpdateFunctionality(id) {
+    console.log(id)
+    $(`#update-btn-${id}`).on("click", () => {
         console.log("clicked");
     })
 
