@@ -23,6 +23,11 @@
     #drink-type-checkboxes {
       display: none;
     }
+
+    .user-drink {
+      background: rgb(255,138,0);
+  background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(14, 43, 204, 0.3) 35%, rgba(18, 150, 173, 0.4) 75%, rgba(201, 14, 218, 0.5) 80%);
+    }
   </style>
  
 </head>
@@ -34,77 +39,92 @@
   <br>
   <br>
   <br>
-  <section class='container'>
-    <form id="recipe-form">
-      <div class="form-group">
-        <label for="drink-name"><strong>Name</strong></label>
-        <input type="text" class="form-control recipe-inputs" id="drink-name">
+  <div class='container'>
+
+    <section class='row'>
+      <div class=col-md-12>
+        <form id="recipe-form">
+          <div class="form-group">
+            <label for="drink-name"><strong>Name</strong></label>
+            <input type="text" class="form-control recipe-inputs" id="drink-name">
+          </div>
+
+          <div class="form-group form-check">
+            <input type="checkbox" class="recipe-inputs form-check-input" id="drink-alcoholic">
+            <label class="form-check-label" for="alcoholic"><strong>Alcholic Drink?</strong></label>
+          </div>
+
+          <div id="drink-type-checkboxes">
+            <div class="form-group form-check">
+              <input type="checkbox" class="recipe-inputs form-check-input" id="drink-rum">
+              <label class="form-check-label" for="rum"><strong>rum Drink?</strong></label>
+            </div>
+
+            <div class="form-group form-check">
+              <input type="checkbox" class="recipe-inputs form-check-input" id="drink-whiskey">
+              <label class="form-check-label" for="whiskey"><strong>whiskey Drink?</strong></label>
+            </div>
+
+            <div class="form-group form-check">
+              <input type="checkbox" class="recipe-inputs form-check-input" id="drink-tequila">
+              <label class="form-check-label" for="tequila"><strong>tequila Drink?</strong></label>
+            </div>
+
+            <div class="form-group form-check">
+              <input type="checkbox" class="recipe-inputs form-check-input" id="drink-vodka">
+              <label class="form-check-label" for="vodka"><strong>vodka Drink?</strong></label>
+            </div>
+
+            <div class="form-group form-check">
+              <input type="checkbox" class="recipe-inputs form-check-input" id="drink-gin">
+              <label class="form-check-label" for="gin"><strong>gin Drink?</strong></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="drink-recipe"><strong>Recipe</strong></label>
+            <input type="text" class="recipe-inputs form-control" id="drink-recipe">
+          </div>
+
+          <div class="form-group">
+            <label for="drink-picture-url"><strong>Picture url</strong></label>
+            <!-- picture upload? SQL can store images -->
+            <input type="text" class="recipe-inputs form-control" id="drink-thumbnail">
+          </div>
+
+          <div class="form-group">
+            <label for="drink-instructions"><strong>Instructions</strong></label>
+            <input type="text" class="recipe-inputs form-control" id="drink-instructions">
+          </div>
+
+          <div class="form-group">
+            <label for="drink-glass"><strong>Glass</strong></label>
+            <input type="text" class="recipe-inputs form-control" id="drink-glass">
+          </div>
+
+          <div class="form-group">
+            <label for="drink-video-url"><strong>Video url</strong></label>
+            <input type="text" class="recipe-inputs form-control" id="drink-video_url">
+          </div>
+
+          <button type="submit" id="submit-recipe" class="btn btn-primary">Submit a new cocktail</button>
+        </form>
       </div>
+    </section>
 
-      <div class="form-group form-check">
-        <input type="checkbox" class="recipe-inputs form-check-input" id="drink-alcoholic">
-        <label class="form-check-label" for="alcoholic"><strong>Alcholic Drink?</strong></label>
+    <section id='user-recipe-section'>
+
+    </section>
+
+
+    <section class='row'>
+      <div class='col-md-12'>
+        <button type=button id=view-my-drinks class="btn btn-success">View all my recipes posted</button>
+        <button type="button" id='delete-my-drinks' data-value="" class="btn btn-danger">Delete a recipe from my recipes</button>
       </div>
+    </section>
 
-      <div id="drink-type-checkboxes">
-        <div class="form-group form-check">
-          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-rum">
-          <label class="form-check-label" for="rum"><strong>rum Drink?</strong></label>
-        </div>
-
-        <div class="form-group form-check">
-          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-whiskey">
-          <label class="form-check-label" for="whiskey"><strong>whiskey Drink?</strong></label>
-        </div>
-
-        <div class="form-group form-check">
-          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-tequila">
-          <label class="form-check-label" for="tequila"><strong>tequila Drink?</strong></label>
-        </div>
-
-        <div class="form-group form-check">
-          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-vodka">
-          <label class="form-check-label" for="vodka"><strong>vodka Drink?</strong></label>
-        </div>
-
-        <div class="form-group form-check">
-          <input type="checkbox" class="recipe-inputs form-check-input" id="drink-gin">
-          <label class="form-check-label" for="gin"><strong>gin Drink?</strong></label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="drink-recipe"><strong>Recipe</strong></label>
-        <input type="text" class="recipe-inputs form-control" id="drink-recipe">
-      </div>
-
-      <div class="form-group">
-        <label for="drink-picture-url"><strong>Picture url</strong></label>
-        <!-- picture upload? SQL can store images -->
-        <input type="text" class="recipe-inputs form-control" id="drink-thumbnail">
-      </div>
-
-      <div class="form-group">
-        <label for="drink-instructions"><strong>Instructions</strong></label>
-        <input type="text" class="recipe-inputs form-control" id="drink-instructions">
-      </div>
-
-      <div class="form-group">
-        <label for="drink-glass"><strong>Glass</strong></label>
-        <input type="text" class="recipe-inputs form-control" id="drink-glass">
-      </div>
-
-      <div class="form-group">
-        <label for="drink-video-url"><strong>Video url</strong></label>
-        <input type="text" class="recipe-inputs form-control" id="drink-video_url">
-      </div>
-
-      <button type="submit" id="submit-recipe" class="btn btn-primary">Submit</button>
-    </form>
-  </section>
-
-  <button type=button id=view-my-drinks class="btn btn-success">View all my recipes posted</button>
-  <button type="button" id='delete-my-drinks' data-value="" class="btn btn-danger">Delete a recipe from my recipes</button>
+  </div>
 </body>
 
 </html>
