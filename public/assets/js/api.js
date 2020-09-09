@@ -63,7 +63,7 @@ function getAllGinDrinks(){
           $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${allDrinks[i].category}" id="${i}">
             <img src="${allDrinks[i].thumbnail}" class="menu-img" alt="">
             <div class="menu-content">
-              <a href="#">${allDrinks[i].name} - ${allDrinks[i].category}</a><span></span>
+              <a href="#">${allDrinks[i].name}</a><span></span>
             </div>
             <div class="menu-ingredients">
               ${allDrinks[i].recipe}
