@@ -36,6 +36,23 @@
     .delete-button {
       float:right;
     }
+
+    #update-current-recipe {
+      display: none;
+    }
+
+    .save-indicator {
+      position:fixed;
+      top: 0px;
+      display:none;
+      background-color: rgba(153, 22, 28, 0.8);
+      font-size: 2em;
+      padding: 0.2em;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
   </style>
  
 </head>
@@ -48,6 +65,8 @@
   <br>
   <br>
   <div class='container'>
+
+    <div class='save-indicator'>Recipe Saved!</div>
 
     <section class='row'>
       <div class=col-md-12>
@@ -90,14 +109,8 @@
           </div>
 
           <div class="form-group">
-            <label for="drink-recipe"><strong>Recipe</strong></label>
+            <label for="drink-recipe"><strong>Measurements</strong></label>
             <input type="text" class="recipe-inputs form-control" id="drink-recipe">
-          </div>
-
-          <div class="form-group">
-            <label for="drink-picture-url"><strong>Picture url</strong></label>
-            <!-- picture upload? SQL can store images -->
-            <input type="text" class="recipe-inputs form-control" id="drink-thumbnail">
           </div>
 
           <div class="form-group">
@@ -110,11 +123,6 @@
             <input type="text" class="recipe-inputs form-control" id="drink-glass">
           </div>
 
-          <div class="form-group">
-            <label for="drink-video-url"><strong>Video url</strong></label>
-            <input type="text" class="recipe-inputs form-control" id="drink-video_url">
-          </div>
-
           <button type="submit" id="submit-recipe" class="btn btn-primary">Submit a new cocktail</button>
         </form>
       </div>
@@ -123,11 +131,12 @@
     <section id='user-recipe-section'>
 
     </section>
-
-
+    
+    
     <section class='row'>
       <div class='col-md-12'>
         <button type=button id=view-my-drinks class="btn btn-success">View all my recipes posted</button>
+        <button type="button" id='update-current-recipe' class='btn btn-secondary'></button>
       </div>
     </section>
 

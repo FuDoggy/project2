@@ -3,6 +3,9 @@ $(document).ready(function(){
     let filteredDrinks = [];
     let nonalc = [];
 
+window.addEventListener("click", function(){
+  $("#drinkDetailModal").modal("hide");
+});
 
 function getDrinks(drink){
   $.get(`/api/${drink}`)
@@ -54,40 +57,61 @@ function appendNonalc(){
   }
 }
 
+
+$(".menu-container").on("click", ".popup", function(e){
+  e.stopPropagation();
+  $("#drinkDetailModal").modal("show");
+
+})
     function appendDrinks(){
       $(".menu-container").html("") 
      
       
       for(let i = 0; i< 8; i++){
-          $(".menu-container").append(`<div class="col-lg-6 menu-item filter-${filteredDrinks[i].category}" id="${i}">
-            <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
-            <div class="menu-content">
+        $(".menu-container").append(`<div class="col-lg-6 menu-item" id="${i}">
+        <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-front">
+        <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
+        <div>${filteredDrinks[i].name}</div>
+        <div class="menu-ingredients">
+          ${filteredDrinks[i].recipe}
+        </div>
+        </div>
+          <div class="flip-back">
+          <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
+          <div class="menu-ingredients">
+            <div>${filteredDrinks[i].recipe}</div>
+            <br>
+            <div>${filteredDrinks[i].instructions}</div>
+          </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      `)
+    }
 
-              <a href="#">${allDrinks[i].name}</a><span></span>
 
-            </div>
-            <div class="menu-ingredients">
-              ${filteredDrinks[i].recipe}
-            </div>
-          `)
-        }
-        var menuIsotope = $('.menu-container').isotope({
-            itemSelector: '.menu-item',
-            layoutMode: 'fitRows'
-          });
+
+        
+        // var menuIsotope = $('.menu-container').isotope({
+        //     itemSelector: '.menu-item',
+        //     layoutMode: 'fitRows'
+        //   });
       
-          $('#menu-flters li').on('click', function() {
-            $("#menu-flters li").removeClass('filter-active');
-            $(this).addClass('filter-active');
+        //   $('#menu-flters li').on('click', function() {
+        //     $("#menu-flters li").removeClass('filter-active');
+        //     $(this).addClass('filter-active');
       
-            menuIsotope.isotope({
-              filter: $(this).data('filter')
-            });
-            AOS.init({
-                duration: 1000,
-                once: true
-              });
-          });
+        //     menuIsotope.isotope({
+        //       filter: $(this).data('filter')
+        //     });
+        //     AOS.init({
+        //         duration: 1000,
+        //         once: true
+        //       });
+        //   });
           $(".menu-container").attr("style", "height:650px !important")
     }
 
@@ -99,3 +123,4 @@ $(".drinkTab").on("click", function(){
 
 })
 
+ 
