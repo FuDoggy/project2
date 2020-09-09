@@ -172,16 +172,25 @@ $(document).ready(() => {
     /** Adds an event listener to a button to update a recipe. the data parameter includes id, name, recipe, etc. */
     function addUpdateFunctionality(data) {
         $(`#update-btn-${data.id}`).on("click", () => {
-            // switch back to the recipe form with values to update
+            // switch back to the recipe form
             recipeForm.slideToggle("slow")
             $("#user-recipe-section").slideToggle("slow");
+            // add in an update this recipe button as well as keep the add new recipe button
             currentRecipeUpdateBtn.attr("style", "display:inline-block");
             currentRecipeUpdateBtn.text(`Update the recipe for ${data.name}`);
             drinkToggleBtn.text("View all my recipes posted");
-            // add in an update this recipe button as well as keep the add new recipe button
-            console.log("clicked");
-            console.log("hi")
             console.log(data)
+
+            // Put in the values to update into the recipe form
+            console.log(data.name)
+            $("#drink-name").val(data.name);
+            $("#drink-recipe").val(data.recipe);
+            $("#drink-instructions").val(data.instructions);
+            $("#drink-glass").val(data.glass);
+            let drinkType = ["alcoholic", "rum", "whiskey", "tequila", "vodka", "gin"];
+            for (let elem of drinkType) {
+                document.getElementById(`drink-${elem}`).checked = data[elem];
+            }
         })
     }
 });
