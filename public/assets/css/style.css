@@ -1035,6 +1035,10 @@ section {
 /*--------------------------------------------------------------
 # Events
 --------------------------------------------------------------*/
+cite {
+  font-size: 0.8em;
+}
+
 .events {
   background: url("https://www.wraltechwire.com/wp-content/uploads/2019/09/cincoro-brands-1008x1024.jpg") center center no-repeat;
   background-size: cover;
@@ -1137,7 +1141,16 @@ section {
 /*--------------------------------------------------------------
 # Book A Table
 --------------------------------------------------------------*/
+.dark-recipe-inputs {
+  background: #0c0b09;
+  border-color: #625b4b;
+}
 
+.dark-recipe-inputs:focus {
+  background: #0c0b09;
+  border-color: #cda45e;
+  box-shadow: 0 0 0 .2rem rgba(205,164,94,.25);
+}
 
 #drink-type-checkboxes {
   display: none;
@@ -1373,11 +1386,25 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
 /*--------------------------------------------------------------
 # Gallery
 --------------------------------------------------------------*/
+#godiva {
+  height: 500px;
+  margin-top: -100px;
+  top: 100px;
+}
+
 .gallery .gallery-item {
   overflow: hidden;
   border-right: 3px solid #454035;
   border-bottom: 3px solid #454035;
+  height: 275px;
+  width: 412px;
 }
+
+.gallery-item img {
+  height: 300px;
+  width: 412px;
+}
+
 
 .gallery .gallery-item img {
   transition: all ease-in-out 0.4s;
@@ -1398,6 +1425,19 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
   overflow: hidden;
 }
 
+.member {
+  height: 350px;
+}
+
+.member img {
+  height: 350px;
+  width: 450px;
+  max-width: 200%;
+}
+
+#tracy-boseman {
+  max-width: 100%;
+}
 .mixologists .member .member-info {
   opacity: 0;
   position: absolute;
