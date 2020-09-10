@@ -1154,6 +1154,16 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
 
 .delete-button {
   float:right;
+  background-color: #cda45e
+  display: block;
+    position: relative;
+    color: white;
+    transition: 0.3s;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    text-decoration: none;
+    background-color: transparent;
+  
 }
 
 #update-current-recipe {
@@ -1164,7 +1174,7 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
   position:fixed;
   top: 0px;
   display:none;
-  background-color: rgba(153, 22, 28, 0.8);
+  background-color: #cda45e;
   font-size: 2em;
   padding: 0.2em;
   border-bottom-left-radius: 15px;
