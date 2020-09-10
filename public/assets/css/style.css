@@ -1158,6 +1158,20 @@ background: linear-gradient(0deg, darkgreen 20%, rgba(18, 150, 173, 0.4) 55%, pu
   
 }
 
+.btn-info:focus {
+  background-color: green !important; 
+  border-color: white !important;
+}
+
+.btn-info:hover {
+  background-color: #cda45e;
+  border-color: white;
+}
+
+.update-button {
+  background-color: #cda45e;
+}
+
 #update-current-recipe {
   display: none;
 }
