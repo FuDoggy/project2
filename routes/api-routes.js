@@ -9,7 +9,7 @@ var owasp = require('owasp-password-strength-test');
 
 //==========REMOVE FOR DEPLOYMENT======================
 // to bypass password strength tester, set STRONG_PASSWORD=true in .env file
-require("dotenv").config();
+// require("dotenv").config();
 //==========REMOVE FOR DEPLOYMENT======================
 
 
@@ -37,10 +37,10 @@ module.exports = function(app) {
     // FOR DEV PURPOSES PASSWORD CAN BE SET TO ALWAYS BE STRONG
     // IMPORTANT: THESE LINES MUST BE COMMENTED OUT BEFORE DEPLOYMENT
     // =============================================
-    console.log(process.env.STRONG_PASSWORD)
-    if (process.env.STRONG_PASSWORD === "yes") {
-      result.strong = true
-    }
+    // console.log(process.env.STRONG_PASSWORD)
+    // if (process.env.STRONG_PASSWORD === "yes") {
+    //   result.strong = true
+    // }
     // =============================================
 
 
@@ -77,23 +77,23 @@ module.exports = function(app) {
 
   app.get("/api/drinks", (req, res) => {
     // ================== ADD BACK IN FOR DEPLOYEMENT =======================
-    // if (!req.user) {
-    //   res.json({});
-    // } else {
+    if (!req.user) {
+      res.json({});
+    } else {
     // =============================================================
       db.Drink.findAll().then((result) => {
         res.json(result);
       })
       //=======================ADD BACK IN FOR DEPLOYEMENT=============
-    // }
+    }
     //=================================================
   })
 
   // admin routes => =================== REMOVE before deployment===============
-  app.get("/api/admindrinks", (req,res)=> { db.Drink.findAll().then((result) => {
-    res.json(result);
-    })
-  })
+  // app.get("/api/admindrinks", (req,res)=> { db.Drink.findAll().then((result) => {
+  //   res.json(result);
+  //   })
+  // })
   
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
@@ -105,30 +105,39 @@ module.exports = function(app) {
   // =========================================================================
 
   app.get("/api/rum", (req, res) => {
-    db.Drink.findAll({where: {
-      rum: true
-    },
-    
-      limit: 8
-  
-  }).then(function(results) {
-      res.json(results)
-    });
-  
+    if (!req.user) {
+        res.json({});
+    } else {
+      db.Drink.findAll({
+        where: {
+          rum: true
+        },
+        limit: 8
+      }).then(function(results) {
+          res.json(results)
+      });
+    }
   })
 
   app.get("/api/whiskey", (req, res) => {
-    db.Drink.findAll({where: {
-      whiskey: true
-    },
-    limit: 8
-  }).then(function(results) {
-      res.json(results)
-    });
-  
+    if (!req.user) {
+      res.json({});
+    } else {
+      db.Drink.findAll({
+        where: {
+          whiskey: true
+        },
+        limit: 8
+      }).then(function(results) {
+        res.json(results);
+      });
+    }
   })
 
   app.get("/api/tequila", (req, res) => {
+    if (!req.user) {
+      res.json({});
+  } else {
     db.Drink.findAll({where: {
       tequila: true
     },
@@ -136,10 +145,13 @@ module.exports = function(app) {
   }).then(function(results) {
       res.json(results)
     });
-  
+  }
   })
 
   app.get("/api/vodka", (req, res) => {
+    if (!req.user) {
+      res.json({});
+  } else {
     db.Drink.findAll({where: {
       vodka: true
     },
@@ -147,10 +159,13 @@ module.exports = function(app) {
   }).then(function(results) {
       res.json(results)
     });
-  
+  }
   })
 
   app.get("/api/gin", (req, res) => {
+    if (!req.user) {
+      res.json({});
+  } else {
     db.Drink.findAll({where: {
       gin: true
     },
@@ -158,26 +173,36 @@ module.exports = function(app) {
   }).then(function(results) {
       res.json(results)
     });
-  
+  }
   })
 
   app.get("/api/non-alcoholic", (req,res)=> {
+    if (!req.user) {
+      res.json({});
+  } else {
     db.Drink.findAll({where: {
       alcoholic: 0
     },
   }).then(function(results){
     res.json(results)
   });
+  }
   })
 
   app.post("/api/drinks/new", (req, res) => {
-    console.log(req.body)
+    if (!req.user) {
+      res.status(200).end();
+  } else {
     db.Drink.create(req.body).then((result) => {
       res.status(200).end();
     })
+  }
   })
 
   app.get("/api/drinks/user/:userId", (req, res) => {
+    if (!req.user) {
+      res.json({});
+  } else {
     db.Drink.findAll({
       where: {
         UserId: req.params.userId
@@ -185,28 +210,35 @@ module.exports = function(app) {
     }).then((result) => {
       res.json(result);
     })
+  }
   });
 
   app.delete("/api/drinks/user/:drinkId", (req, res) => {
-    db.Drink.destroy({
-      where: {
-        id: req.params.drinkId
-      }
-    }).then((result) => {
+    if (!req.user) {
       res.status(200).end();
-    });
+    } else {
+      db.Drink.destroy({
+        where: {
+          id: req.params.drinkId
+        }
+      }).then((result) => {
+        res.status(200).end();
+      });
+    }
   });
 
   app.put("/api/drinks", (req, res) => {
-    console.log(req.body)
-    db.Drink.update(
-      req.body, {
+    if (!req.user) {
+      res.status(200).end();
+    } else {
+      db.Drink.update(req.body, {
         where: {
           id: req.body.id
         }
-      }
-    )
-    res.status(200).end();
+      }).then((result) => {
+        res.status(200).end();
+      });
+    }
   });
 };
 
