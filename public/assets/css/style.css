@@ -963,7 +963,7 @@ section {
   font-style: italic;
   font-size: 14px;
   font-family: "Poppins", sans-serif;
-  color: rgba(255, 255, 255, 0.5);
+  color: black;
 }
 
 .menu-container {
@@ -1807,8 +1807,8 @@ section {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  background-color: darkslategrey;
-  color: whitesmoke;
+  background-color: #cda45e;
+  color: antiquewhite;
   border-radius: 5px;
   box-shadow: 3px 3px  whitesmoke;
 }
@@ -1823,7 +1823,7 @@ section {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  background-color: darkcyan;
+  background-color: #cda45e;
   color: whitesmoke;
   transform: rotateX(180deg);
   border-radius: 5px;
