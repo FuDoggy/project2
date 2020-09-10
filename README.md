@@ -1,5 +1,5 @@
 # EXPRESS BARTENDER
-https://img.shields.io/badge/license-MIT%20License-green
+![image](https://img.shields.io/badge/license-MIT%20License-green)
 
 
 ## CONCEPT
@@ -11,37 +11,37 @@ This application was designed for the purpose of providing a unique, one-stop ap
 
 This application utilized the Cocktail DB API in order to produce a unique user experience across 3 webpages and 10 website sections.  In the home/landing page, the user is presented with a navigation bar with the following sections:
 
-Home
-About
-Cocktails
-Non-Alcoholic
-Spirit Guide
-Testimonials
-Gallery
-Mixologists
-Contact
-Add Your Own Drink
+<p>Home</p>
+<p>About</p>
+<p>Cocktails</p>
+<p>Non-Alcoholic</p>
+<p>Spirit Guide</p>
+<p>Testimonials</p>
+<p>Gallery</p>
+<p>Mixologists</p>
+<p>Contact</p>
+<p>Add Your Own Drink</p>
 
 Upon landing on the sign-up/log-in page page, the user will be asked to sign-up as a member or enter their log-in credentials.  They will then be redirected to the members page and presented with a navigation bar with the above titles.  In the Cocktails section, the user is able to search dynamically (search results change as user types) for their drinks, spirits, or ingredients of choice.  They also have the ability to browse through a list of randomly generated drinks from the database.  In addition, users may add, update, and delete drink recipes to the database.  The application will also capture their submissions on their member profiles for future reference.  The Spirit Guide offers information and history on five of the most common spirits. 
 
 
-## TECHNOLOGIES USED:
+## TECHNOLOGIES USED
  
-bcrypt
-Bootstrap 
-owasp password strength test NPM package
-dotenv NPM package
-Express library
-Heroku
-JavaScript/HTML/CSS
-jQuery
-mySQL
-mySQL Workbench
-Node.js
-Passport NPM package
-Postman
-Python
-Sequelize
+<p>bcrypt</p>
+<p>Bootstrap </p>
+<p>owasp password strength test NPM package</p>
+<p>dotenv NPM package</p>
+<p>Express library</p>
+<p>Heroku</p>
+<p>JavaScript/HTML/CSS</p>
+<p>jQuery</p>
+<p>mySQL</p>
+<p>mySQL Workbench</p>
+<p>Node.js</p>
+<p>Passport NPM package</p>
+<p>Postman</p>
+<p>Python</p>
+<p>Sequelize</p>
 
 
 ## PROCESS
@@ -84,14 +84,18 @@ Allow users to input missing ingredients in drink recipes and connect them with 
 Ability to add/save testimonials
 
 
+## IMAGE OF DEPLOYED APPLICATION
+![image](src="./public/assets/img/Express-Bartender.png")
+
+
 ## AUTHORS AND ACKNOWLEDGEMENT
 
 This project was collaboratively constructed by two teams:
 
-Front-End:  Anissa Shanks
-            Tim Hellman
+<p>Front-End:  Anissa Shanks</p>
+<p>            Tim Hellman</p>
 
-Back-End:   Kevin Miller
-            Kevin Fujimoto
+<p>Back-End:   Kevin Miller</p>
+<p>            Kevin Fujimoto</p>
 
 We also had the assistance of our instructor, Bryan Swarthout, TA, Wilson Lam, and tutor, Chad Tao.
