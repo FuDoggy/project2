@@ -96,12 +96,12 @@ module.exports = function(app) {
   // })
   
   //seeder route to migrate data from array data to SQL data
-  app.get("/api/seeder", async (req, res) => {
-    let alreadyEntered = [];
-    await seed(allDrinks, alreadyEntered);
-    await seed(alcoholicDrinks, alreadyEntered);
-    res.json("seeded!")
-  })
+  // app.get("/api/seeder", async (req, res) => {
+  //   let alreadyEntered = [];
+  //   await seed(allDrinks, alreadyEntered);
+  //   await seed(alcoholicDrinks, alreadyEntered);
+  //   res.json("seeded!")
+  // })
   // =========================================================================
 
   app.get("/api/rum", (req, res) => {
