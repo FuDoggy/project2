@@ -1035,6 +1035,10 @@ section {
 /*--------------------------------------------------------------
 # Events
 --------------------------------------------------------------*/
+cite {
+  font-size: 0.8em;
+}
+
 .events {
   background: url("https://www.wraltechwire.com/wp-content/uploads/2019/09/cincoro-brands-1008x1024.jpg") center center no-repeat;
   background-size: cover;
