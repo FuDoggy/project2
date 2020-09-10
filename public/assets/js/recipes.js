@@ -50,7 +50,7 @@ drinkToggleBtn.on("click", function() {
     // if the recipe form is still showing, hide it
     if (document.getElementById("recipe-form").style.display !== "none") {
         recipeForm.slideToggle("slow")
-
+$("#submit-recipe").hide()
         // hide the update current recipe button, if it is showing
         currentRecipeUpdateBtn.attr("style", "display:none");
 
@@ -102,6 +102,7 @@ drinkToggleBtn.on("click", function() {
         drinkToggleBtn.text("View all my recipes posted");
         recipeForm.slideToggle("slow");
         $("#user-recipe-section").slideToggle("slow");
+        $("#submit-recipe").show()
     }
 })
 

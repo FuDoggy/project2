@@ -1139,7 +1139,7 @@ cite {
 }
 
 /*--------------------------------------------------------------
-# Book A Table
+# User recipe section
 --------------------------------------------------------------*/
 .dark-recipe-inputs {
   background: #0c0b09;
@@ -1158,7 +1158,7 @@ cite {
 
 .user-drink {
   background: rgb(255,138,0);
-background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173, 0.4) 55%, rgba(201, 14, 218, 0.5) 80%);
+background: linear-gradient(0deg, darkgreen 20%, rgba(18, 150, 173, 0.4) 55%, purple 80%);
 }
 
 #user-recipe-section {
@@ -1167,6 +1167,22 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
 
 .delete-button {
   float:right;
+  background-color: #cda45e
+  
+}
+
+.btn-info:focus {
+  background-color: green !important; 
+  border-color: white !important;
+}
+
+.btn-info:hover {
+  background-color: #cda45e;
+  border-color: white;
+}
+
+.update-button {
+  background-color: #cda45e;
 }
 
 #update-current-recipe {
@@ -1177,7 +1193,7 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
   position:fixed;
   top: 0px;
   display:none;
-  background-color: rgba(153, 22, 28, 0.8);
+  background-color: #cda45e;
   font-size: 2em;
   padding: 0.2em;
   border-bottom-left-radius: 15px;
