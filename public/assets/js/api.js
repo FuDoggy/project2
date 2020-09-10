@@ -121,6 +121,17 @@ $(".drinkTab").on("click", function(){
   getDrinks($(this).attr("id"))
 })
 
+// upon submitting a user recipe, get the drinks again so that the user recipe is immediately searchable
+$("#recipe-form").on("submit", function(event) {
+  event.preventDefault();
+  // set a timeout so that the drink can be added to the database before getting the drinks
+  setTimeout(function() {
+    getDrinks("drinks");
+  }, 1000)
+  // clear the search form
+  $("#Search").val("");
+});
+
 })
 
  
