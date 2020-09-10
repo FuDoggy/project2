@@ -1145,7 +1145,7 @@ section {
 
 .user-drink {
   background: rgb(255,138,0);
-background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173, 0.4) 55%, rgba(201, 14, 218, 0.5) 80%);
+background: linear-gradient(0deg, darkgreen 20%, rgba(18, 150, 173, 0.4) 55%, purple 80%);
 }
 
 #user-recipe-section {
@@ -1155,14 +1155,6 @@ background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173
 .delete-button {
   float:right;
   background-color: #cda45e
-  display: block;
-    position: relative;
-    color: white;
-    transition: 0.3s;
-    font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-    text-decoration: none;
-    background-color: transparent;
   
 }
 
