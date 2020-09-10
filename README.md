@@ -85,7 +85,7 @@ Ability to add/save testimonials
 
 
 ## IMAGE OF DEPLOYED APPLICATION
-![image](src="./public/assets/img/Express-Bartender.png")
+![image](https://user-images.githubusercontent.com/64618290/92814775-6edfb080-f378-11ea-85d1-9937f797d155.png)
 
 
 ## AUTHORS AND ACKNOWLEDGEMENT
