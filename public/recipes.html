@@ -26,7 +26,7 @@
 
     .user-drink {
       background: rgb(255,138,0);
-  background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(14, 43, 204, 0.3) 35%, rgba(18, 150, 173, 0.4) 75%, rgba(201, 14, 218, 0.5) 80%);
+  background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173, 0.4) 55%, rgba(201, 14, 218, 0.5) 80%);
     }
 
     #user-recipe-section {
@@ -52,6 +52,7 @@
       border-bottom-right-radius: 15px;
       left: 50%;
       transform: translate(-50%, 0);
+      z-index:5000;
     }
   </style>
  
@@ -66,7 +67,7 @@
   <br>
   <div class='container'>
 
-    <div class='save-indicator'>Recipe Saved!</div>
+    <div class='save-indicator'></div>
 
     <section class='row'>
       <div class=col-md-12>

@@ -32,20 +32,14 @@ $(document).ready(() => {
         let newDrinkObj = createDrinkObj();
 
         $.post("/api/drinks/new", newDrinkObj).then(() => {
-            $(".save-indicator").slideToggle("slow", function() {
-                setTimeout(() => {
-                    $(".save-indicator").slideToggle("slow");
-                },
-                1000
-                );
-            });
+            indicateConfirmation("Recipe Saved!");
+            document.getElementById("update-current-recipe").style.display === 'none' ? null : currentRecipeUpdateBtn.slideToggle("slow");
         })
         
     });
 
     // upon clicking the view my drinks button, view the user's drinks
     drinkToggleBtn.on("click", function() {
-
         // if the recipe form is still showing, hide it
         if (document.getElementById("recipe-form").style.display !== "none") {
             recipeForm.slideToggle("slow")
@@ -103,13 +97,18 @@ $(document).ready(() => {
         }
     })
 
+    /** adds delete functionality to the delete recipe buttons */
     function addDeleteFunctionality(delBtnId, name) {
         $(`#del-btn-${delBtnId}`).on("click", () => {
             let deleteConfirm = confirm(`Are you sure you would like to delete the recipe for ${name}?`)
             if (deleteConfirm) {
                 let queryUrl = "/api/drinks/user/" + delBtnId
-                let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
-                document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+                $(`#recipe-${delBtnId}`).slideToggle("slow");
+                setTimeout(() => {
+                    let recipeToRemove = document.getElementById(`recipe-${delBtnId}`);
+                    document.getElementById("user-recipe-section").removeChild(recipeToRemove);
+                },
+                1000);
                 $.ajax({
                     url: queryUrl,
                     method: "delete"
@@ -141,23 +140,25 @@ $(document).ready(() => {
                 document.getElementById(`drink-${elem}`).checked = data[elem];
             }
 
-            // add update request to update the database
+            // Upon clicking the update button, create a new drink object with the form values.
             currentRecipeUpdateBtn.on("click", function() {
                 let newDrinkObj = createDrinkObj();
-                console.log("NOWNOW")
-    
-                console.log(newDrinkObj)
+                // Add the drink id to the drink object.
                 newDrinkObj["id"] = data.id;
+                // Finally, update the sql database
                 let queryUrl = `/api/drinks`
                 $.ajax({
                     url: queryUrl,
                     method: "PUT",
                     data: newDrinkObj
+                }).then(() => {
+                    indicateConfirmation("Recipe Updated!")
                 })
             })
         })
     }
 
+    /** Gets the values from the recipe form, and returns them in a single custom object. */
     function createDrinkObj() {
         // Creating a drink object to add to the SQL database:
         let newDrinkObj = {};
@@ -204,14 +205,21 @@ $(document).ready(() => {
         newDrinkObj["thumbnail"] = "https://www.standard.co.uk/s3fs-public/thumbnails/image/2016/09/30/10/cocktails.jpg"
         // TODO next we have to validate the data - make sure fields are not null, etc. Sequelize queries will return errors and crash server if the errors are not properly handled
 
-        // TODO pictures? videos? we need to decide what we are posting to the database. 
-        // Probably we can't store user videos, or even pictions, it would be preferable just to have a link to them. 
-        // Will there be a default picture for drinks? 
-        // Will the recipes be the same table as our currently existing drink table? 
-        // Will we have a separate recipe table, or will recipes just be listed under the user table?
-
         // Finally, the last step is $.post the new drink object to the database
         return newDrinkObj;
+    }
+
+    /** displays text briefly at the top of the page
+     * @param {string} text - text to be displayed */
+    function indicateConfirmation(text) {
+        $(".save-indicator").text(text);
+        $(".save-indicator").slideToggle("slow", function() {
+            setTimeout(() => {
+                $(".save-indicator").slideToggle("slow");
+            },
+            1000
+            );
+        });
     }
 });
 
