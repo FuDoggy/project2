@@ -6,6 +6,7 @@ let alcoCheck = document.getElementById("drink-alcoholic");
 let recipeForm = $("#recipe-form");
 let drinkToggleBtn = $("#view-my-drinks");
 let currentRecipeUpdateBtn = $("#update-current-recipe");
+document.getElementById("update-current-recipe").style.display = "none";
 
 // upon page load, if alcoholic checkbox is already checked, display the other checkboxes:
 alcoCheck.checked ? $("#drink-type-checkboxes").css("display", "block") : null;
@@ -36,6 +37,7 @@ $("#recipe-form").on("submit", function(event) {
 
     // Post form values to the SQL database.
     $.post("/api/drinks/new", newDrinkObj).then(() => {
+        console.log(document.getElementById("update-current-recipe").style.display)
         indicateConfirmation("Recipe Saved!");
         document.getElementById("update-current-recipe").style.display === 'none' ? null : currentRecipeUpdateBtn.slideToggle("slow");
     })
