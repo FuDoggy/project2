@@ -111,7 +111,7 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <h3>We'll help you become your own mixologist in the comfort of your home!</h3>
             <p class="font-italic">
-              You can find your favorite alcoholic and non-alcholic cocktails on Express Bartender. Just input your drink of choice or submit one of your own! We'll provide you with a wide variety of options to quench your thirst.
+              You can find your favorite alcoholic and non-alcoholic cocktails on Express Bartender. Just input your drink of choice or submit one of your own! We'll provide you with a wide variety of options to quench your thirst.
             </p>
             <ul>
               <li><i class="icofont-check-circled"></i> Users can search for a cocktail based on the name, main ingredient or alcohol preference they may already have on-hand.</li>
@@ -119,7 +119,7 @@
               <li><i class="icofont-check-circled"></i> A special feature we added includes the user being able to enter their own drink into a database and store for future reference.</li>
             </ul>
             <p>
-              Our web application is designed to provide the user with a way to search for alcholic and non-alcholic cocktails that they are familiar with since our local bars are currently closed. Once you identify a cocktail of choice, 
+              Our web application is designed to provide the user with a way to search for alcoholic and non-alcoholic cocktails that they are familiar with since our local bars are currently closed. Once you identify a cocktail of choice, 
               we provide the ingredients and recipes to make your favorite drink from the comfort of your own home!
             </p>
           </div>
@@ -262,7 +262,7 @@
                 <li><i class="icofont-check-circled"></i> Current distillers use potatoes and/or fruit as the base liquid.</li>
                 <li><i class="icofont-check-circled"></i> Typically consumed neat and served freezer chilled.</li>
               </ul>
-              
+              <cite>Source: wikipedia.org</cite>
             </div>
           </div>
 
@@ -278,12 +278,13 @@
                 began to be brewed as a rye based product. 
               </p>
               <ul>
-                <li><i class="icofont-check-circled"></i> Corn, the main ingredient of whiskey and makes up 51% of its ingredients, was plentiful in its origin areas.</li>
+                <li><i class="icofont-check-circled"></i> Corn, the main ingredient of whiskey, making up 51% of its ingredients, was plentiful in its origin areas.</li>
                 <li><i class="icofont-check-circled"></i> Divided into two common brands: sour mash and bourbon.</li>
                 <li><i class="icofont-check-circled"></i> In 1897, the "Bottled In Bond" Act was passed into law stating that whiskey must be straight (50% alcohol by volume) and produced by one distillation season under one distiller and on the grounds of one distillery.</li>
                 <li><i class="icofont-check-circled"></i> It also must have been stored in a federally bonded warehouse under the supervision of the U.S. Government for at least four years. This bonded whiskey still holds a reputation for being the best of the best.</li>
               </ul>
               </ul>
+              <cite>Source: homewetbar.com</cite>
               <!-- <p>
                 Some brands of American whiskey that have stood the test of time include Jim Beam, Maker’s Mark, Wild Turkey, and Eagle Rare. 
                 Distilleries in Kentucky, Tennessee and Virginia are open for tours and tastings to allow the public to experience the origins of true American whiskey.
@@ -307,7 +308,7 @@
                 <li><i class="icofont-check-circled"></i> Certain types of gin can be enjoyed neat or on the rocks, or blended in a cocktail.</li>
                 <li><i class="icofont-check-circled"></i> Many distilleries have been producing the same type of gin since the early 1700s.</li>
               </ul>
-              
+              <cite>Source: themanual.com</cite>
             </div>
           </div>
       <div class="row event-item">
@@ -326,7 +327,7 @@
                 <li><i class="icofont-check-circled"></i> Tequila must have between 35% and 55% alcohol content (70-110 US proof).  It must contain at least 40% (80 US proof) alcohol to be sold in the US and Canada.</li>
               </ul>
               </ul>
-            
+              <cite>Source: wikipedia.org</cite>
             </div>
           </div>
           <div class="row event-item">
@@ -346,7 +347,7 @@
                   <li><i class="icofont-check-circled"></i> Some of the popular drinks containing rum are: The Daiquiri, Mojito, Pina Colada, and Cuba Libre.</li>
                 </ul>
                 </ul>
-                
+                <cite>Source: wikipedia.org</cite>
               </div>
             </div>
         </div>
@@ -368,13 +369,13 @@
         <div class=col-md-12>
           <form id="recipe-form">
             <div class="form-group">
-              <label for="drink-name"><strong>Name</strong></label>
-              <input type="text" class="form-control recipe-inputs" id="drink-name">
+              <label for="drink-name"><strong>Cocktail Name</strong></label>
+              <input type="text" class="form-control recipe-inputs dark-recipe-inputs" id="drink-name">
             </div>
   
             <div class="form-group form-check">
               <input type="checkbox" class="recipe-inputs form-check-input" id="drink-alcoholic">
-              <label class="form-check-label" for="alcoholic"><strong>Alcholic Drink?</strong></label>
+              <label class="form-check-label" for="alcoholic"><strong>alcoholic Drink?</strong></label>
             </div>
   
             <div id="drink-type-checkboxes">
@@ -406,17 +407,17 @@
   
             <div class="form-group">
               <label for="drink-recipe"><strong>Measurements</strong></label>
-              <input type="text" class="recipe-inputs form-control" id="drink-recipe">
+              <input type="text" class="recipe-inputs form-control dark-recipe-inputs" id="drink-recipe">
             </div>
   
             <div class="form-group">
               <label for="drink-instructions"><strong>Instructions</strong></label>
-              <input type="text" class="recipe-inputs form-control" id="drink-instructions">
+              <textarea type="text" class="recipe-inputs form-control dark-recipe-inputs" id="drink-instructions"></textarea>
             </div>
   
             <div class="form-group">
               <label for="drink-glass"><strong>Glass</strong></label>
-              <input type="text" class="recipe-inputs form-control" id="drink-glass">
+              <input type="text" class="recipe-inputs form-control dark-recipe-inputs" id="drink-glass">
             </div>
            
           </form>
@@ -510,7 +511,8 @@
           <div class="testimonial-item">
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              After a long day working from home, I needed a cocktail to celebrate my new show on OWN. I logged onto Expresss Bartender and found the recipe for a Pink Champagne Margarita! I had the recipe right at my fingertips and started the weekend off right!
+
+              After a long day working from home, I needed a cocktail to celebrate my new show on OWN. I logged onto Express Bartender and found the recipe for a Pink Champagne Margarita! I had the recipe right at my fingertips and started the weekend off right!
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
             <img src="https://i.pinimg.com/originals/de/ae/89/deae89bdec301e44767460259e01b0b3.jpg" class="testimonial-img" alt="Oprah holding a drink">
@@ -574,8 +576,9 @@
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="/public/assets/img/gallery/gallery-1a.jpg" class="venobox" data-gall="gallery-item">
-                <img src="https://cdn.vox-cdn.com/thumbor/LilsyFAEeapBGIE1EzCsGVTPPCs=/0x0:4032x3024/1200x900/filters:focal(1694x1190:2338x1834)/cdn.vox-cdn.com/uploads/chorus_image/image/60718189/C20205ED_9B49_48D6_8266_C6A7B321558F.0.jpeg" alt="non alcholic cocktail on table" class="img-fluid">
+              <a href="https://cdn.vox-cdn.com/thumbor/LilsyFAEeapBGIE1EzCsGVTPPCs=/0x0:4032x3024/1200x900/filters:focal(1694x1190:2338x1834)/cdn.vox-cdn.com/uploads/chorus_image/image/60718189/C20205ED_9B49_48D6_8266_C6A7B321558F.0.jpeg" class="venobox" data-gall="gallery-item">
+                <img src="https://cdn.vox-cdn.com/thumbor/LilsyFAEeapBGIE1EzCsGVTPPCs=/0x0:4032x3024/1200x900/filters:focal(1694x1190:2338x1834)/cdn.vox-cdn.com/uploads/chorus_image/image/60718189/C20205ED_9B49_48D6_8266_C6A7B321558F.0.jpeg" alt="non alcoholic cocktail on table" class="img-fluid" style="height: 275px">
+
               </a>
             </div>
           </div>
@@ -599,7 +602,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
               <a href="https://www.thedrinkblog.com/wp-content/uploads/2014/11/tdb-chocolate-martini18.jpg" class="venobox" data-gall="gallery-item">
-                <img src="https://www.thedrinkblog.com/wp-content/uploads/2014/11/tdb-chocolate-martini18.jpg" alt="Godiva chocolate martini" class="img-fluid" style="height: 275px;" width="375px">
+                <img src="https://www.thedrinkblog.com/wp-content/uploads/2014/11/tdb-chocolate-martini18.jpg" alt="Godiva chocolate martini" class="img-fluid" id="godiva">
               </a>
             </div>
           </div>
@@ -654,7 +657,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <img src="https://ocbarchix.weebly.com/uploads/4/1/6/4/41641021/s885452435921408554_p1_i1_w569.jpeg" class="img-fluid" alt="African American woman bartending">
+              <img src="https://ocbarchix.weebly.com/uploads/4/1/6/4/41641021/s885452435921408554_p1_i1_w569.jpeg" class="img-fluid" alt="African American woman bartending" id="tracy-boseman">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Tracy Boseman</h4>
@@ -672,7 +675,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="200">
-              <img src="https://i.insider.com/5d1f6b59a17d6c32b97f930a?width=1100&format=jpeg&auto=webp" class="img-fluid" alt="female at the bar pouring drink" style="height: 355px;">
+              <img src="https://i.insider.com/5d1f6b59a17d6c32b97f930a?width=1100&format=jpeg&auto=webp" class="img-fluid" alt="female at the bar pouring drink">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Abby Fallon</h4>
@@ -690,7 +693,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="300">
-              <img src="https://cdn.lifestyleasia.com/wp-content/uploads/sites/3/2020/03/06181742/female-bartenders-bangkok-1-copy-806x583.jpg" class="img-fluid" alt="Asian female bartender" style="height: 350px;">
+              <img src="https://cdn.lifestyleasia.com/wp-content/uploads/sites/3/2020/03/06181742/female-bartenders-bangkok-1-copy-806x583.jpg" class="img-fluid" alt="Asian female bartender">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Lucy Lam</h4>
@@ -764,7 +767,7 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="mailto:expressBartender@theFakestDomain.com" method="post" role="form" class="php-email-form">
               <div class="form-row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />

@@ -94,8 +94,7 @@ module.exports = function(app) {
     res.json(result);
     })
   })
-  // =========================================================================
-
+  
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
     let alreadyEntered = [];
@@ -103,6 +102,7 @@ module.exports = function(app) {
     await seed(alcoholicDrinks, alreadyEntered);
     res.json("seeded!")
   })
+  // =========================================================================
 
   app.get("/api/rum", (req, res) => {
     db.Drink.findAll({where: {
@@ -215,14 +215,24 @@ module.exports = function(app) {
  * json file must contain the listed keys for each object. */
 async function seed(jsonFileName, alreadyEntered) {
   try {
+    // map data to a new object containing the appropriate categories for our table model
     const data = jsonFileName.map(function(a) {
       let element = a.drinks[0]
       let i = 1;
       let recipe = ""
       while(element[`strIngredient${i}`]){
-        recipe += (element[`strMeasure${i}`] || "") + element[`strIngredient${i}`]+" "
+        // add the measurement to the recipe
+        recipe += (element[`strMeasure${i}`] || "");
+        // if the measurement does not end with a space, add a space:
+        if (!(/( )$/g).test(element[`strMeasure${i}`])) {
+          recipe += " "
+        }
+        // add the ingredient after the measurement:
+        recipe += element[`strIngredient${i}`] + ", ";
         i++;
       }
+      // slice off the final comma
+      recipe = recipe.slice(0, recipe.length - 2);
       return {
         name: element.strDrink,
         category: element.strCategory.replace(/ /g,""),
@@ -244,7 +254,7 @@ async function seed(jsonFileName, alreadyEntered) {
     for(let i = 0; i< data.length; i++){
       // add to database, but don't add duplicates
       if (!alreadyEntered.includes(data[i]["name"])) {
-        // create entry in sql table:
+        // create entry in sql table, using the above mapped data
         await db.Drink.create(data[i])
         console.log(`index ${i} completed!`)
         // push entry into already entered array, to prevent duplicate
