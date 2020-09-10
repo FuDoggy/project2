@@ -160,7 +160,7 @@
 
   // Events carousel (uses the Owl Carousel library)
   $(".events-carousel").owlCarousel({
-    autoplay: false,
+    autoplay: true,
     dots: true,
     loop: false,
     items: 1
