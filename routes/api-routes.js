@@ -197,8 +197,15 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/drinks/:userId/:drinkId", (req, res) => {
-    console.log(req.params)
+  app.put("/api/drinks", (req, res) => {
+    console.log(req.body)
+    db.Drink.update(
+      req.body, {
+        where: {
+          id: req.body.id
+        }
+      }
+    )
     res.status(200).end();
   });
 };
