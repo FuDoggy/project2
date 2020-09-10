@@ -74,7 +74,7 @@ $(".menu-container").on("click", ".popup", function(e){
         <div class="flip-front">
         <img src="${filteredDrinks[i].thumbnail}" class="menu-img" alt="">
         <div>${filteredDrinks[i].name}</div>
-        <div class="menu-ingredients">
+        <div class="menu-ingredients" style="margin-top: 5px">
           ${filteredDrinks[i].recipe}
         </div>
         </div>
