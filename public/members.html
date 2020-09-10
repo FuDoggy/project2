@@ -36,6 +36,9 @@
   ======================================================== -->
   
   <script defer src="assets/js/signout.js"></script>
+
+  <!-- js code for user recipes section -->
+  <script defer src="assets/js/recipes.js"></script>
 </head>
 
 <body>
@@ -62,7 +65,7 @@
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#mixologists">Mixologists</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li class="book-a-table text-center"><a href="#book-a-table">Add your own!</a></li>
+          <li class="book-a-table text-center"><a href="#recipe-form">Add your own!</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -79,7 +82,7 @@
 
           <div class="btns">
             <a href="#menu" class="btn-menu animated fadeInUp scrollto">Cocktails</a>
-            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Add your own!</a>
+            <a href="#user-recipe-container" class="btn-book animated fadeInUp scrollto">Add your own!</a>
           </div>
         </div>
         <div class="col-lg-4 d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
@@ -371,7 +374,87 @@
     </section><!-- End Events Section -->
 
     <!-- ======= Book A Table Section ======= -->
-    <section id="book-a-table" class="book-a-table">
+
+    <div class='container' id='user-recipe-container'>
+
+      <div class='save-indicator'></div>
+  
+      <section class='row'>
+        <div class=col-md-12>
+          <form id="recipe-form">
+            <div class="form-group">
+              <label for="drink-name"><strong>Name</strong></label>
+              <input type="text" class="form-control recipe-inputs" id="drink-name">
+            </div>
+  
+            <div class="form-group form-check">
+              <input type="checkbox" class="recipe-inputs form-check-input" id="drink-alcoholic">
+              <label class="form-check-label" for="alcoholic"><strong>Alcholic Drink?</strong></label>
+            </div>
+  
+            <div id="drink-type-checkboxes">
+              <div class="form-group form-check">
+                <input type="checkbox" class="recipe-inputs form-check-input" id="drink-rum">
+                <label class="form-check-label" for="rum"><strong>rum Drink?</strong></label>
+              </div>
+  
+              <div class="form-group form-check">
+                <input type="checkbox" class="recipe-inputs form-check-input" id="drink-whiskey">
+                <label class="form-check-label" for="whiskey"><strong>whiskey Drink?</strong></label>
+              </div>
+  
+              <div class="form-group form-check">
+                <input type="checkbox" class="recipe-inputs form-check-input" id="drink-tequila">
+                <label class="form-check-label" for="tequila"><strong>tequila Drink?</strong></label>
+              </div>
+  
+              <div class="form-group form-check">
+                <input type="checkbox" class="recipe-inputs form-check-input" id="drink-vodka">
+                <label class="form-check-label" for="vodka"><strong>vodka Drink?</strong></label>
+              </div>
+  
+              <div class="form-group form-check">
+                <input type="checkbox" class="recipe-inputs form-check-input" id="drink-gin">
+                <label class="form-check-label" for="gin"><strong>gin Drink?</strong></label>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="drink-recipe"><strong>Measurements</strong></label>
+              <input type="text" class="recipe-inputs form-control" id="drink-recipe">
+            </div>
+  
+            <div class="form-group">
+              <label for="drink-instructions"><strong>Instructions</strong></label>
+              <input type="text" class="recipe-inputs form-control" id="drink-instructions">
+            </div>
+  
+            <div class="form-group">
+              <label for="drink-glass"><strong>Glass</strong></label>
+              <input type="text" class="recipe-inputs form-control" id="drink-glass">
+            </div>
+  
+            <button type="submit" id="submit-recipe" class="btn btn-primary">Submit a new cocktail</button>
+          </form>
+        </div>
+      </section>
+  
+      <section id='user-recipe-section'>
+  
+      </section>
+      
+      
+      <section class='row'>
+        <div class='col-md-12'>
+          <a href='#user-recipe-container'><button type=button id=view-my-drinks class="btn btn-success">View all my recipes posted</button></a>
+          <button type="button" id='update-current-recipe' class='btn btn-secondary'></button>
+        </div>
+      </section>
+  
+    </div>
+
+
+    <!-- <section id="book-a-table" class="book-a-table">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -419,7 +502,7 @@
         </form>
 
       </div>
-    </section><!-- End Book A Table Section -->
+    </section>End Book A Table Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
@@ -450,7 +533,7 @@
               I had no idea what to make so I used Express Bartender to bring the party to me!
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
-            <img src="/public/assets/img/Wilson_Testimonial section.jpg" class="testimonial-img" alt="Wilson testimonial">
+            <img src="/assets/img/Wilson_Testimonial section.jpg" class="testimonial-img" alt="Wilson testimonial">
             <h3>Wilson Lam</h3>
             <h4>Web Developer</h4>
           </div>
