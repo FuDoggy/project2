@@ -1137,6 +1137,45 @@ section {
 /*--------------------------------------------------------------
 # Book A Table
 --------------------------------------------------------------*/
+
+
+#drink-type-checkboxes {
+  display: none;
+}
+
+.user-drink {
+  background: rgb(255,138,0);
+background: linear-gradient(0deg, rgba(85, 195, 223, 0.2) 20%, rgba(18, 150, 173, 0.4) 55%, rgba(201, 14, 218, 0.5) 80%);
+}
+
+#user-recipe-section {
+  display: none;
+}
+
+.delete-button {
+  float:right;
+}
+
+#update-current-recipe {
+  display: none;
+}
+
+.save-indicator {
+  position:fixed;
+  top: 0px;
+  display:none;
+  background-color: rgba(153, 22, 28, 0.8);
+  font-size: 2em;
+  padding: 0.2em;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index:5000;
+}
+
+
+
 .book-a-table .php-email-form {
   width: 100%;
 }
