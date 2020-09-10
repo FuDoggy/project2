@@ -219,9 +219,8 @@ function createDrinkObj() {
     newDrinkObj["UserId"] = userId;
     // hardcode a placeholder image
     newDrinkObj["thumbnail"] = "https://www.standard.co.uk/s3fs-public/thumbnails/image/2016/09/30/10/cocktails.jpg"
-    // TODO next we have to validate the data - make sure fields are not null, etc. Sequelize queries will return errors and crash server if the errors are not properly handled
+    // TODO data validation of some sort?
 
-    // Finally, the last step is $.post the new drink object to the database
     return newDrinkObj;
 }
 

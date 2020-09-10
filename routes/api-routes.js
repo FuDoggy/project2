@@ -94,8 +94,7 @@ module.exports = function(app) {
     res.json(result);
     })
   })
-  // =========================================================================
-
+  
   //seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
     let alreadyEntered = [];
@@ -103,6 +102,7 @@ module.exports = function(app) {
     await seed(alcoholicDrinks, alreadyEntered);
     res.json("seeded!")
   })
+  // =========================================================================
 
   app.get("/api/rum", (req, res) => {
     db.Drink.findAll({where: {
@@ -220,7 +220,14 @@ async function seed(jsonFileName, alreadyEntered) {
       let i = 1;
       let recipe = ""
       while(element[`strIngredient${i}`]){
-        recipe += (element[`strMeasure${i}`] || "") + element[`strIngredient${i}`]+" "
+        // add the measurement to the recipe
+        recipe += (element[`strMeasure${i}`] || "");
+        // if the measurement does not end with a space, add a space:
+        if (!(/( )$/g).test(element[`strMeasure${i}`])) {
+          recipe += " "
+        }
+        // add the ingredient after the measurement:
+        recipe += element[`strIngredient${i}`] + " ";
         i++;
       }
       return {
