@@ -1141,7 +1141,16 @@ cite {
 /*--------------------------------------------------------------
 # Book A Table
 --------------------------------------------------------------*/
+.dark-recipe-inputs {
+  background: #0c0b09;
+  border-color: #625b4b;
+}
 
+.dark-recipe-inputs:focus {
+  background: #0c0b09;
+  border-color: #cda45e;
+  box-shadow: 0 0 0 .2rem rgba(205,164,94,.25);
+}
 
 #drink-type-checkboxes {
   display: none;
