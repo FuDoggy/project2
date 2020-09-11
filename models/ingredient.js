@@ -13,19 +13,19 @@ module.exports = function (sequelize, DataTypes) {
     we have a "many-to-many" relationship. In order to join the two tables, a third table,
     "UserIngredients", is created. This table is a "junction table", which contains foreign keys
     that reference both tables. */
-  Ingredient.associate = function(models) {
-    Ingredient.belongsToMany(models.User, {
-      onDelete: "NO ACTION",
-      through: "UserIngredients"
-    });
-  };
+  // Ingredient.associate = function(models) {
+  //   Ingredient.belongsToMany(models.User, {
+  //     onDelete: "NO ACTION",
+  //     through: "UserIngredients"
+  //   });
+  // };
 
-  Ingredient.associate = function(models) {
-    Ingredient.belongsToMany(models.Drink, {
-      onDelete: "NO ACTION",
-      through: "DrinkIngredients"
-    });
-  };
+  // Ingredient.associate = function(models) {
+  //   Ingredient.belongsToMany(models.Drink, {
+  //     onDelete: "NO ACTION",
+  //     through: "DrinkIngredients"
+  //   });
+  // };
   return Ingredient;
 }
 

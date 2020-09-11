@@ -6,6 +6,7 @@ const alcoholicDrinks = require("../dev-shared-files/scripts-get-ingredients/alc
 const util = require("util");
 const path = require("path");
 var owasp = require('owasp-password-strength-test');
+const { sequelize } = require("../models");
 
 //==========REMOVE FOR DEPLOYMENT======================
 // to bypass password strength tester, set STRONG_PASSWORD=true in .env file
@@ -76,7 +77,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/drinks", (req, res) => {
-    // ================== ADD BACK IN FOR DEPLOYEMENT =======================
+    // ================== ADD BACK IN FOR DEPLOYEMENT - login to get api data =======================
     if (!req.user) {
       res.json({});
     } else {
@@ -89,7 +90,7 @@ module.exports = function(app) {
     //=================================================
   })
 
-  // admin routes => =================== REMOVE before deployment===============
+  // ADMIN routes => =================== REMOVE before deployment===============
   // app.get("/api/admindrinks", (req,res)=> { db.Drink.findAll().then((result) => {
   //   res.json(result);
   //   })
@@ -102,6 +103,14 @@ module.exports = function(app) {
     await seed(alcoholicDrinks, alreadyEntered);
     res.json("seeded!")
   })
+
+  // route to delete database
+  app.get("/api/admin/deleteall", async (req, res) => {
+    await sequelize.query("DELETE FROM drinks;")
+    await sequelize.query("DELETE FROM users;")
+    res.json("database deleted");
+  })
+
   // =========================================================================
 
   app.get("/api/rum", (req, res) => {
