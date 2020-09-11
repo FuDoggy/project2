@@ -97,6 +97,8 @@ module.exports = function(app) {
   // })
   
   // seeder route to migrate data from array data to SQL data
+  // see notes in passport.js for notes on proteting admin routes
+
   app.get("/api/seeder", async (req, res) => {
     let alreadyEntered = [];
     await seed(allDrinks, alreadyEntered);
@@ -105,6 +107,7 @@ module.exports = function(app) {
   })
 
   // route to delete database
+  // see notes in passport.js for notes on proteting admin routes
   app.get("/api/admin/deleteall", async (req, res) => {
     await sequelize.query("DELETE FROM drinks;")
     await sequelize.query("DELETE FROM users;")

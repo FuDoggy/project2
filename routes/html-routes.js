@@ -20,7 +20,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
-  // must be authenticated...
+  // must be authenticated... runs authenticate function,
+  // which sees if req.user object exists - and req.user is created by passport
+  // passport only runs every time you open page - cookie is stored for session
+  // the cookie gets deleted after closing browser
   app.get("/recipes", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/recipes.html"));
   })

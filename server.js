@@ -18,6 +18,11 @@ app.use(express.static("public"));
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
+
+// passport middleware only loads when user logs into session
+// it runs the passport once, which provides the req.user 
+// req.user is then checked whenever isAuthenticated() is run
+// if we wanted an admin route, we would want a separate isAdmin() function
 app.use(passport.initialize());
 app.use(passport.session());
 
