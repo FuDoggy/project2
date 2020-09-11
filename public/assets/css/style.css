@@ -1577,7 +1577,7 @@ background: linear-gradient(0deg, darkgreen 20%, rgba(18, 150, 173, 0.4) 55%, pu
 
 .contact .php-email-form .validate {
   display: none;
-  color: red;
+  color: rgb(85, 54, 7);
   margin: 0 0 15px 0;
   font-weight: 400;
   font-size: 13px;
@@ -1586,7 +1586,7 @@ background: linear-gradient(0deg, darkgreen 20%, rgba(18, 150, 173, 0.4) 55%, pu
 .contact .php-email-form .error-message {
   display: none;
   color: #fff;
-  background: #ed3c0d;
+  background: #633e07;
   text-align: center;
   padding: 15px;
   font-weight: 600;

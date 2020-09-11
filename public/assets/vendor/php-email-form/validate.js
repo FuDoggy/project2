@@ -143,8 +143,8 @@
       }
     }).fail( function(data){
       console.log(data);
-      var error_msg = "Thanks for your interest!<br>";
-      error_msg += "Your email has been submitted into the ether."
+      var error_msg = "Thank you for your interest!<br>";
+      error_msg += "Your email has been submitted into the spirit world."
       // if(data.statusText || data.status) {
       //   error_msg += 'Status:';
       //   if(data.statusText) {
