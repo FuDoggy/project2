@@ -95,7 +95,7 @@ module.exports = function(app) {
   //   })
   // })
   
-  //seeder route to migrate data from array data to SQL data
+  // seeder route to migrate data from array data to SQL data
   app.get("/api/seeder", async (req, res) => {
     let alreadyEntered = [];
     await seed(allDrinks, alreadyEntered);
