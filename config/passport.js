@@ -39,6 +39,15 @@ passport.use(
 // In order to help keep authentication state across HTTP requests,
 // Sequelize needs to serialize and deserialize the user
 // Just consider this part boilerplate needed to make it all work
+
+// passport sends back user info every time that passport is run
+// passport runs on a session - the cookie expires upon session close
+// the cookie provided by passport here is good for a session
+// the isAuthenticate function then uses the cookie provided by passport
+    // every time a protected route is accessed
+
+// in order to add an admin route, we can attach a property
+// to the user object. user.admin
 passport.serializeUser((user, cb) => {
   cb(null, user);
 });
