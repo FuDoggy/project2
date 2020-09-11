@@ -162,7 +162,7 @@
   $(".events-carousel").owlCarousel({
     autoplay: true,
     dots: true,
-    loop: false,
+    loop: true,
     items: 1
   });
 
