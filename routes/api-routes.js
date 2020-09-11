@@ -109,9 +109,14 @@ module.exports = function(app) {
   // route to delete database
   // see notes in passport.js for notes on proteting admin routes
   app.get("/api/admin/deleteall", async (req, res) => {
-    await sequelize.query("DELETE FROM drinks;")
-    await sequelize.query("DELETE FROM users;")
-    res.json("database deleted");
+    try {
+      await sequelize.query("DELETE FROM Drinks;")
+      await sequelize.query("DELETE FROM Users;")
+      res.json("database deleted");
+    }
+    catch {
+      res.json("delete failed");
+    }
   })
 
   // =========================================================================
