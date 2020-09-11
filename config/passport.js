@@ -47,7 +47,9 @@ passport.use(
     // every time a protected route is accessed
 
 // in order to add an admin route, we can attach a property
-// to the user object. user.admin
+// to the user object: user.admin. To utilize this, we would have 
+// an isAdmin() middleware, with next() routes, etc.
+// the admin could have a specific email or username
 passport.serializeUser((user, cb) => {
   cb(null, user);
 });
